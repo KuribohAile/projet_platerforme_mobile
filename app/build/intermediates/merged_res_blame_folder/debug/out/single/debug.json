@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_plante.png.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/plante.png"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_gallery_24.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/gallery_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_settings_24.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/settings_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_profile_24.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/profile_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_google_sign_in.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/google_sign_in.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_camera_24.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/camera_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_home_24.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/home_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/xml_path_provider.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/xml/path_provider.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/xml_backup_rules.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_map_24.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/map_24.xml"
+    }
+]

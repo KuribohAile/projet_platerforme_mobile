@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "793699722713",
+    "project_id": "localespecies",
+    "storage_bucket": "localespecies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793699722713:android:22248501c3115577f165c8",
+        "android_client_info": {
+          "package_name": "com.example.locslspecies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9-6Zriay-ZSbaIm_fevaOp1rcBq4wqpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
