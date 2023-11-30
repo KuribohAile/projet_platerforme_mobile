@@ -12,11 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.locslspecies._ui.BottomBar
-import com.example.locslspecies.model.MyPlant
-import com.example.locslspecies._ui.NavigationGraph
-import com.example.locslspecies._ui.Plant
+import com.example.locslspecies._ui.navigation.BottomBar
+import com.example.locslspecies.model.UsersPictures
+import com.example.locslspecies._ui.navigation.NavHost
+import com.example.locslspecies.model.UserPictures
 import com.example.locslspecies.ui.theme.LocslSpeciesTheme
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -26,10 +27,10 @@ class MainActivity : ComponentActivity() {
         val db = Firebase.firestore
 
         // liste d'exemple de plantes de tous les utilisateurs
-        val AllUserslants = getAllUserPlantList()
+        val AllUserslants = getUserPictures()
 
         // liste d'exemple de plantes photographiées par l'utilisateur
-        val Userplants = getUserPlantList()
+        val Userplants = getUsersPictures()
         setContent {
             LocslSpeciesTheme {
 
@@ -50,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier.padding(paddingValues)
                     ) {
-                        NavigationGraph(navController = navController , AllUserslants = AllUserslants, Userplants = Userplants)
+                        NavHost(navController = navController , userPictures = AllUserslants, usersPictures = Userplants)
                     }
                 }
             }
@@ -58,11 +59,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-fun getUserPlantList(): List<MyPlant> {
+fun getUsersPictures(): List<UsersPictures> {
 
     return listOf(
 
-        MyPlant(
+        UsersPictures(
             imageUrl = "https://networkofnature.org/userContent/ecom/products/2626-7159/finals/7159%5FABIEBAL%5F533%2Ejpg",
             photographer = "Eleonora Quartana",
             date = "19 nov. 2023",
@@ -71,7 +72,7 @@ fun getUserPlantList(): List<MyPlant> {
             family = "Famille: Myrtaceae"
         ),
 
-        MyPlant(
+        UsersPictures(
             imageUrl = "https://networkofnature.org/userContent/ecom/products/2626-7159/finals/7159%5FABIEBAL%5F533%2Ejpg",
             photographer = "Eleonora Quartana",
             date = "19 nov. 2023",
@@ -79,7 +80,7 @@ fun getUserPlantList(): List<MyPlant> {
             commonName = "Nom commun: Myrte",
             family = "Famille: Myrtaceae"
         ),
-        MyPlant(
+        UsersPictures(
             imageUrl = "https://networkofnature.org/userContent/ecom/products/2626-7159/finals/7159%5FABIEBAL%5F533%2Ejpg",
             photographer = "Eleonora Quartana",
             date = "19 nov. 2023",
@@ -90,24 +91,24 @@ fun getUserPlantList(): List<MyPlant> {
     )
 }
 
-fun getAllUserPlantList(): List<Plant> {
+fun getUserPictures(): List<UserPictures> {
 
     return listOf(
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante"),
-        Plant(R.drawable.plante, "Nom plante")
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante"),
+        UserPictures(R.drawable.plante, "Nom plante")
     )
 }

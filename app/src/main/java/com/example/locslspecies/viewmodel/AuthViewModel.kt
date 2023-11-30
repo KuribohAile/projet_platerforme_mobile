@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.locslspecies.model.AuthUiState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -12,10 +13,11 @@ import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class AuthViewModel : ViewModel() {
     val uiState = MutableStateFlow<AuthUiState>(AuthUiState.Empty)
-    //val uiState: StateFlow<AuthUiState> = _uiState
     val db = Firebase.firestore
     private val _isLoggedIn = MutableLiveData<Boolean>(false)
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
@@ -24,14 +26,15 @@ class AuthViewModel : ViewModel() {
         _isLoggedIn.value = firebaseAuth.currentUser != null
     }
 
-
 // inititialisation de l'authentification listener
     init {
+
         Firebase.auth.addAuthStateListener(authStateListener)
     }
 
+
   // fonction qui permet de s'inscrire
-    fun register(email: String, password: String) {
+     fun register(email: String, password: String) {
 
         uiState.value = AuthUiState.Loading
         Firebase.auth.createUserWithEmailAndPassword(email, password)
@@ -48,10 +51,12 @@ class AuthViewModel : ViewModel() {
 
                 }
             }
+
     }
 
     // fonction qui permet de se connecter
     fun login(email: String, password: String) {
+
         uiState.value = AuthUiState.Loading // Indicate loading state
         Firebase.auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->

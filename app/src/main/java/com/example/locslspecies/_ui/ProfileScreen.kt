@@ -22,7 +22,7 @@ import com.example.locslspecies.R
 
 // fonction qui permet de créer la page de profil de l'utilisateur
 @Composable
-fun ProfilePage(onDisconnect: () -> Unit) {
+fun ProfileScreen(onDisconnect: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()

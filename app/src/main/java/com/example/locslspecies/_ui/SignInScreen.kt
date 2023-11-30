@@ -1,5 +1,7 @@
 package com.example.locslspecies._ui
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,6 +22,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -27,10 +31,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.locslspecies.R
+import com.example.locslspecies._ui.navigation.Route
+import com.example.locslspecies.helper.ErrorHandling
+import com.example.locslspecies.model.AuthUiState
 import com.example.locslspecies.viewmodel.AuthViewModel
 
 // fonction qui permet de créer la page de connexion de l'utilisateur
@@ -41,6 +49,8 @@ fun SignInScreen(navController: NavHostController) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val isLoggedIn by viewModel.isLoggedIn.observeAsState(false)
+    val uiState by viewModel.uiState.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -67,7 +77,7 @@ fun SignInScreen(navController: NavHostController) {
         )
         Spacer(modifier = Modifier.height(40.dp))
         Row {
-            Button(onClick = { navController.navigate(BottomNavItem.SignUp.screen_route) },
+            Button(onClick = { navController.navigate(Route.SignUp.screen_route) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF3B808B), // Use primary color for the button background
                     contentColor = Color.White)
@@ -76,12 +86,20 @@ fun SignInScreen(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.width(16.dp))
             Button(onClick = {
-                viewModel.login(email.value, password.value)
 
-                if (isLoggedIn){
-                    navController.navigate(BottomNavItem.Home.screen_route)
+                if(email.value == "" || password.value == "") {
+                    Toast.makeText(
+                        navController.context,
+                        "Veuillez remplir tous les champs svp",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }else{
+                    viewModel.login(email.value, password.value)
+                    if (isLoggedIn){
+                        navController.navigate(Route.Home.screen_route)
+                    }
                 }
-                             },
+           },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF3B808B), // Use primary color for the button background
                     contentColor = Color.White)
@@ -90,6 +108,8 @@ fun SignInScreen(navController: NavHostController) {
             }
         }
 
+        Spacer(modifier = Modifier.height(40.dp))
+        ErrorHandling(uiState)
         Spacer(modifier = Modifier.height(40.dp))
 
         Text("Mot de passe oublie", color = Color.White)
@@ -129,3 +149,5 @@ fun CustomOutlinedTextFieldSignIn(
         )
     )
 }
+
+

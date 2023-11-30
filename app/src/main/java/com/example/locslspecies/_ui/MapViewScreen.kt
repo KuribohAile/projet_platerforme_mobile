@@ -13,7 +13,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 // fonction qui affiche la carte
 @Composable
-fun MapViewComposable() {
+fun MapViewScreen() {
     val saguenay = LatLng(48.4149, -71.0489)
     val quebec = LatLng(46.829853, -71.254028)
     val cameraPositionState = rememberCameraPositionState {
@@ -27,13 +27,13 @@ fun MapViewComposable() {
         ) {
             Marker(
                 state = MarkerState(position = saguenay),
-                title = "Singapore",
-                snippet = "Marker in Singapore"
+                title = "saguenay",
+                snippet = "Marker de saguenay"
             )
             Marker(
                 state = MarkerState(position = quebec),
-                title = "Singapore",
-                snippet = "Marker in Singapore"
+                title = "quebec",
+                snippet = "Marker de quebec"
             )
         }
     }

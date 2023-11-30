@@ -24,15 +24,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
-import com.example.locslspecies.model.MyPlant
+import com.example.locslspecies.model.UsersPictures
 
 // Les données de la liste de plantes de l'utilisateur
 @Composable
-fun MyPlantList(plantList: List<MyPlant>) {
+fun HomeScreen(usersPictures: List<UsersPictures>) {
     val context = LocalContext.current
     LazyColumn {
-        items(plantList) { plant ->
-            MyPlantCard(
+        items(usersPictures) { plant ->
+            HomeScreen(
                 imageUrl = plant.imageUrl,
                 photographer = plant.photographer,
                 date = plant.date,
@@ -47,7 +47,7 @@ fun MyPlantList(plantList: List<MyPlant>) {
 
 // Les données d'une plante de la liste de plantes de l'utilisateur
 @Composable
-fun MyPlantCard(
+fun HomeScreen(
 
     imageUrl: String,
     photographer: String,
