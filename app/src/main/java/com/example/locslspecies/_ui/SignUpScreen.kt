@@ -1,6 +1,5 @@
 package com.example.locslspecies._ui
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -26,7 +25,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.locslspecies.model.User
+import com.example.locslspecies.model._User
 import com.example.locslspecies.R
 import com.example.locslspecies._ui.navigation.Route
 import com.example.locslspecies.helper.ErrorHandling
@@ -40,25 +39,12 @@ fun SignUpScreen(navController: NavHostController) {
     val context = LocalContext.current
     val viewModel: AuthViewModel = viewModel()
     val uiState by viewModel.uiState.collectAsState()
-    var user by remember { mutableStateOf(User()) }
+    var user by remember { mutableStateOf(_User()) }
 
     // on verifie l'etat de l'inscription et on affiche un message en fonction
     when (uiState) {
-        is AuthUiState.Error -> {
-
-            Toast.makeText(context, "Error: ${(uiState as AuthUiState.Error).message}", Toast.LENGTH_LONG).show()
-            Log.d("MYTAG", "login: " + (uiState as AuthUiState.Error).message)
-        }
-        AuthUiState.Loading -> {
-
-            Toast.makeText(context, "Chargement...", Toast.LENGTH_LONG).show()
-
-        }
         AuthUiState.Success -> {
-            Toast.makeText(context, "Inscription reussie", Toast.LENGTH_LONG).show()
-            navController.navigate(Route.SignIn.screen_route)
-        }
-
+            navController.navigate(Route.SignIn.screen_route) }
         else -> {}
     }
 
@@ -95,6 +81,13 @@ fun SignUpScreen(navController: NavHostController) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+        CustomOutlinedTextField(
+            value = user.description,
+            onValueChange = { newText -> user = user.copy(description = newText) },
+            label = "Decrivez vous"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         CustomOutlinedTextField(
             value = user.password,
@@ -109,7 +102,7 @@ fun SignUpScreen(navController: NavHostController) {
             onValueChange = { newText -> user = user.copy(repeatPassword = newText) },
             label = "Repetez votre mot de passe"
         )
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         Button(onClick = {
             if (user.password != user.repeatPassword){
@@ -120,7 +113,7 @@ fun SignUpScreen(navController: NavHostController) {
                 ).show()
 
             }else {
-                viewModel.register(user.email, user.password)
+                viewModel.register(user)
             }
 
             },
@@ -130,17 +123,17 @@ fun SignUpScreen(navController: NavHostController) {
         ) {
             Text("S'inscrire", color = Color.White)
         }
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(15.dp))
         ErrorHandling(uiState)
-        Spacer(modifier = Modifier.height(40.dp))
+/*        Spacer(modifier = Modifier.height(40.dp))
         Text("Se connecter via", color = Color.White)
         Spacer(modifier = Modifier.height(8.dp))
-        IconButton(onClick = { /* Handle Google Sign-In here */ }) {
+        IconButton(onClick = { *//* Handle Google Sign-In here *//* }) {
             Icon(
                 painter = painterResource(id = R.drawable.google_sign_in),
                 contentDescription = "Google Sign-In"
             )
-        }
+        }*/
 
     }
 }

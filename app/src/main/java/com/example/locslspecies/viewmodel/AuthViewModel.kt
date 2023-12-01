@@ -1,11 +1,10 @@
 package com.example.locslspecies.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.locslspecies.model.AuthUiState
+import com.example.locslspecies.model._User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -13,17 +12,18 @@ import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+
 
 class AuthViewModel : ViewModel() {
     val uiState = MutableStateFlow<AuthUiState>(AuthUiState.Empty)
     val db = Firebase.firestore
     private val _isLoggedIn = MutableLiveData<Boolean>(false)
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
+    val  userId = MutableLiveData<String>()
 
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         _isLoggedIn.value = firebaseAuth.currentUser != null
+         userId.value = firebaseAuth.currentUser?.uid ?: ""
     }
 
 // inititialisation de l'authentification listener
@@ -34,13 +34,14 @@ class AuthViewModel : ViewModel() {
 
 
   // fonction qui permet de s'inscrire
-     fun register(email: String, password: String) {
+     fun register(user: _User) {
 
         uiState.value = AuthUiState.Loading
-        Firebase.auth.createUserWithEmailAndPassword(email, password)
+        Firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     uiState.value = AuthUiState.Success
+                    registerUserInfos(user)
 
 
                 } else {
@@ -61,7 +62,6 @@ class AuthViewModel : ViewModel() {
         Firebase.auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-
                     uiState.value = AuthUiState.Success // Indicate success
                 } else {
                     uiState.value = AuthUiState.Error(
@@ -83,17 +83,15 @@ class AuthViewModel : ViewModel() {
     }
 
     // fonction qui permet d'enregistrer les informations de l'utilisateur dans la base de données firestore
-    fun registerUserInfos(user: User){
+    fun registerUserInfos(user: _User){
         // Add a new document with a generated ID
-        db.collection("Users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d("MY-TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+        db.collection("Users").document(userId.value!!)
+            .set(user)
+            .addOnSuccessListener {
             }
             .addOnFailureListener { e ->
-                Log.w("MY-TAG", "Error adding document", e)
-            }
 
+            }
     }
 
     // fonction qui permet d'enregistrer le commentaire de l'utilisateur dans la base de données firestore pas encore fini
