@@ -1,9 +1,8 @@
 package com.example.locslspecies._ui
 import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.widget.Toast
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -24,9 +23,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
+import com.example.locslspecies.helper.requestPermission
+import com.example.locslspecies.model.GeoPoint
+import com.example.locslspecies.model.Pictures
+import com.example.locslspecies.model._User
+import com.example.locslspecies.viewmodel.AuthViewModel
+import com.google.firebase.Timestamp
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -35,7 +40,7 @@ import java.util.Objects
 // fonction qui permet de prendre une photo
 @Composable
 fun CameraScreen() {
-
+    val viewModel: AuthViewModel = viewModel()
     val context = LocalContext.current
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
@@ -47,23 +52,11 @@ fun CameraScreen() {
         mutableStateOf<Uri>(Uri.EMPTY)
     }
 
-    // fonction qui permet de lancer la camera
-    val cameraLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
-            capturedImageUri = uri
-        }
-
-    // fonction qui permet de demander la permission d'utiliser la camera
-    val permissionLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) {
-        if (it) {
-            Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show()
-            cameraLauncher.launch(uri)
-        } else {
-            Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
-        }
+    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) capturedImageUri = uri
     }
+    val permissionsLauncher = requestPermission(context, uri, cameraLauncher = cameraLauncher)
+
 
     // interface graphique de la page Camera
     Column(
@@ -75,8 +68,9 @@ fun CameraScreen() {
         Row(
             Modifier
                 .background(Color(0xFF3B808B))
-                .fillMaxSize().weight(1f)
-                .padding(24.dp)
+                .fillMaxSize()
+                .weight(1f)
+                .padding(16.dp)
         ) {
 
             Text(
@@ -87,23 +81,25 @@ fun CameraScreen() {
 
             )
         }
-        Spacer(modifier = Modifier.height(600.dp))
+        Spacer(modifier = Modifier.height(500.dp))
         Row(Modifier.weight(1f)) {
             // bouton qui permet de prendre une photo
             Button(onClick = {
-                val permissionCheckResult =
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-                if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
-                    cameraLauncher.launch(uri)
-                } else {
-                    // Request a permission
-                    permissionLauncher.launch(Manifest.permission.CAMERA)
-                }
+
+                permissionsLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+
+                )
             }, colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF3B808B), // Use primary color for the button background
                 contentColor = Color.White)) {
                 Text(text = "Prendre une photo")
             }
+
         }
 
     }
@@ -112,10 +108,33 @@ fun CameraScreen() {
     if (capturedImageUri.path?.isNotEmpty() == true) {
 
         Image(
-            modifier = Modifier.padding(16.dp, 8.dp),
+            modifier = Modifier
+                .padding(70.dp, 80.dp)
+                .height(300.dp),
             painter = rememberAsyncImagePainter(capturedImageUri),
             contentDescription = null
         )
+
+        viewModel.uploadImage(capturedImageUri, onSuccess = {
+           // Log.d("MYTAG", "CameraScreen: $it")
+            val picture = Pictures(
+                url = it.toString(),
+                postedAt = Timestamp(Date()),
+                scientificName = "scientificName",
+                commonName = "commonName",
+                family = "family",
+                comments = "",
+                localization = listOf(GeoPoint.latitude, GeoPoint.longitude),
+                locatedIn = listOf( Pair(0.0,0.0)),
+                validation = 0,
+                postedBy = viewModel.userId.value.toString(),
+                )
+
+                 viewModel.insertUserPicture(picture = picture)
+
+        }, onFailure = {
+
+        })
     }
 
 

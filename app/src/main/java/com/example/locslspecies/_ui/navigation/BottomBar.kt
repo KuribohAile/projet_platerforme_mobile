@@ -66,7 +66,7 @@ fun BottomBar(
                 },
                 colors = NavigationBarItemDefaults.colors(
                     unselectedTextColor = Color.Gray, selectedTextColor = Color.White,
-                    indicatorColor = Color(0xFFB6B2B0)
+                    indicatorColor = Color(0xCB472D3C)
                 ),
             )
         }

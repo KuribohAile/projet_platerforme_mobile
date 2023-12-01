@@ -1,9 +1,12 @@
 package com.example.locslspecies.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.locslspecies.model.AuthUiState
+import com.example.locslspecies.model.Pictures
+import com.example.locslspecies.model.UsersPictures
 import com.example.locslspecies.model._User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -11,6 +14,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.flow.MutableStateFlow
 
 
@@ -20,6 +24,7 @@ class AuthViewModel : ViewModel() {
     private val _isLoggedIn = MutableLiveData<Boolean>(false)
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
     val  userId = MutableLiveData<String>()
+    private val storageRef = Firebase.storage.reference
 
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         _isLoggedIn.value = firebaseAuth.currentUser != null
@@ -92,6 +97,38 @@ class AuthViewModel : ViewModel() {
             .addOnFailureListener { e ->
 
             }
+    }
+
+    fun insertUserPicture(picture: Pictures){
+        // Add a new document with a generated ID
+        db.collection("Pictures").document(userId.value!!)
+            .set(picture)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener { e ->
+
+            }
+    }
+
+    fun uploadImage(fileUri: Uri, onSuccess: (Uri) -> Unit, onFailure: (Exception) -> Unit) {
+        val imageRef = storageRef.child("images/${fileUri.lastPathSegment}")
+        val uploadTask = imageRef.putFile(fileUri)
+
+        uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            imageRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                onSuccess(downloadUri)
+            } else {
+                task.exception?.let { onFailure(it) }
+            }
+        }
     }
 
     // fonction qui permet d'enregistrer le commentaire de l'utilisateur dans la base de données firestore pas encore fini
