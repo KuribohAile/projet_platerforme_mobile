@@ -56,11 +56,6 @@ fun SignUpScreen(navController: NavHostController) {
         Text("Inscription", color = Color.White, style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(16.dp))
 
-        CustomOutlinedTextField(
-            value = user.surname,
-            onValueChange = { newText -> user = user.copy(surname = newText) },
-            label = "Votre prenom"
-        )
         Spacer(modifier = Modifier.height(16.dp))
 
         CustomOutlinedTextField(
@@ -73,13 +68,6 @@ fun SignUpScreen(navController: NavHostController) {
             value = user.email,
             onValueChange = { newText -> user = user.copy(email = newText) },
             label = "Votre email"
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-        CustomOutlinedTextField(
-            value = user.description,
-            onValueChange = { newText -> user = user.copy(description = newText) },
-            label = "Decrivez vous"
         )
 
         Spacer(modifier = Modifier.height(16.dp))

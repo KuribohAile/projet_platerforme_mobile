@@ -49,9 +49,11 @@ fun HomeScreen(navController: NavHostController) {
                 scientificName = picture.scientificName,
                 commonName = picture.commonName,
                 family = picture.family,
+                validedBy = picture.validation,
                 context = context,
                 navController = navController,
                 position = usersPictures.indexOf(picture)
+
             )
             Divider(
                 color = Color(0xFF3B808B),
@@ -72,6 +74,7 @@ fun HomeScreen(
     date: Date,
     scientificName: String,
     commonName: String,
+    validedBy: Int,
     family: String,
     context: Context,
     navController: NavHostController,
@@ -92,12 +95,12 @@ fun HomeScreen(
         )
         Column(modifier = Modifier.padding(8.dp)) {
             Text(
-                text = postedBy,
+                text = "Poste par: $postedBy",
                 fontSize = 12.sp,
                 color = Color.Gray
             )
             Text(
-                text = date.toString(),
+                text = "Date: ${date.toString()}",
                 fontSize = 12.sp,
                 color = Color.Gray
             )
@@ -107,9 +110,10 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(text = scientificName, fontSize = 18.sp, color = Color.Black)
-                    Text(text = commonName, fontSize = 14.sp, color = Color.Black)
-                    Text(text = family, fontSize = 14.sp, color = Color.Black)
+                    Text(text = "Nom: $commonName", fontSize = 14.sp, color = Color.Black)
+                    Text(text = "Nom scientifique $scientificName", fontSize = 14.sp, color = Color.Black)
+                    Text(text = "Famille: $family", fontSize = 14.sp, color = Color.Black)
+                    Text(text = "Valider par: $validedBy utiisateurs", fontSize = 14.sp, color = Color.Black)
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Button(onClick = {

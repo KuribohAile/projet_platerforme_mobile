@@ -29,6 +29,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -70,6 +72,7 @@ fun SignInScreen(navController: NavHostController) {
             value = password.value,
             onValueChange = { newText -> password.value = newText },
             label = "Votre mot de passe"
+
         )
         Spacer(modifier = Modifier.height(40.dp))
         Row {
@@ -137,6 +140,7 @@ fun CustomOutlinedTextFieldSignIn(
         onValueChange = onValueChange,
         label = { Text(label, color = Color(0xFF03C5E4)) },
         shape = RoundedCornerShape(16.dp),
+        visualTransformation = if (label == "Votre mot de passe" || label == "Repetez votre mot de passe") PasswordVisualTransformation() else VisualTransformation.None,
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = Color.White,
             unfocusedTextColor = Color.White,

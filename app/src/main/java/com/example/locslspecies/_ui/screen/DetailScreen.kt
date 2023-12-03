@@ -3,12 +3,16 @@ package com.example.locslspecies._ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,10 +30,16 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,7 +57,9 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
     val position = navBackStackEntry.arguments?.getInt("position") ?: -1
     val pictures by viewModel.pictures.observeAsState(emptyList())
     var commentText by remember { mutableStateOf("") }
-    var comments by remember { mutableStateOf(listOf<String>()) }
+    var comments by remember { mutableStateOf(listOf<Comment>()) }
+    val scrollState = rememberLazyListState()
+    val focusManager = LocalFocusManager.current
 
     DisposableEffect(Unit) {
         viewModel.fetchImages()
@@ -69,12 +81,12 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                     .fillMaxWidth()
             )
             Column(modifier = Modifier.padding(8.dp)) {
-                Text(text = picture.postedBy.surname, fontSize = 12.sp, color = Color.Gray)
-                Text(text = picture.postedAt.toDate().toString(), fontSize = 12.sp, color = Color.Gray)
+                Text(text = "Poste par: ${picture.postedBy.surname}", fontSize = 12.sp, color = Color.Gray)
+                Text(text = "Date: ${picture.postedAt.toDate().toString()}", fontSize = 12.sp, color = Color.Gray)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text = picture.scientificName, fontSize = 18.sp, color = Color.Black)
-                Text(text = picture.commonName, fontSize = 14.sp, color = Color.Black)
-                Text(text = picture.family, fontSize = 14.sp, color = Color.Black)
+                Text(text = "Nom: ${picture.scientificName}", fontSize = 14.sp, color = Color.Black)
+                Text(text = "Nom scientifique: ${picture.commonName}", fontSize = 14.sp, color = Color.Black)
+                Text(text = "Famille: ${picture.family}", fontSize = 14.sp, color = Color.Black)
             }
            // Spacer(modifier = Modifier.weight(1f))
             Divider(
@@ -82,22 +94,42 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                 thickness = 2.dp,
             )
 
-            comments.forEach { comment ->
-                Text(text = comment, modifier = Modifier.padding(8.dp))
+        LazyColumn(state = scrollState, modifier = Modifier.weight(12f)) {
+            items(comments.size) { index ->
+                val comment = comments[index]
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = rememberAsyncImagePainter(comment.user.url),
+                        contentDescription = "Profile picture",
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(50)) // Circular image
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Column {
+                        Text(text = comment.user.name, fontWeight = FontWeight.Bold)
+                        Text(text = comment.text)
+                    }
+                }
             }
         }
-
+    }
         Spacer(modifier = Modifier.weight(1f))
 
-
-        // TextField for comments
         TextField(
             value = commentText,
             onValueChange = { commentText = it },
-            placeholder = { Text("Add a comment...") },
+            placeholder = { Text("Ajouter un commentaire...") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
+                //.focusRequester(focusRequester),
+            shape = RoundedCornerShape(16.dp),
             colors = TextFieldDefaults.textFieldColors(
                 cursorColor = Color.Black,
                 focusedIndicatorColor = Color.Gray,
@@ -106,21 +138,24 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = {
                 if (commentText.isNotBlank()) {
-                    comments = comments + commentText
+                    comments = comments + Comment(commentText, user)
                     commentText = ""
+                    focusManager.clearFocus()
                 }
             }),
             trailingIcon = {
                 IconButton(onClick = {
                     if (commentText.isNotBlank()) {
-                        comments = comments + commentText
+                        comments = comments + Comment(commentText, user)
                         commentText = ""
+                        focusManager.clearFocus()
                     }
                 }) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_send_24), // Replace with your send icon resource
-                        contentDescription = "Send comment",
-                        modifier = Modifier.size(24.dp)
+                        contentDescription = "envoi",
+                        modifier = Modifier.size(24.dp),
+
                     )
                 }
             }
@@ -130,3 +165,12 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
 }
 
 
+data class Comment(
+    val text: String,
+    val user: currentUser // Assuming User class has properties like name and profilePictureUrl
+)
+data class currentUser(
+    val name: String,
+    val url: String // Assuming User class has properties like name and profilePictureUrl
+)
+val user = currentUser("John Doe", "https://avatars.githubusercontent.com/u/77149638?v=4")
