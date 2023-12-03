@@ -27,6 +27,7 @@ class AuthViewModel : ViewModel() {
     val user = MutableLiveData<_User>()
     val userDocumentRef = MutableLiveData<DocumentReference>()
     val picturesRef = mutableListOf<DocumentReference>()
+    val comments = MutableLiveData<List<Comments>>()
 
 
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -37,6 +38,7 @@ class AuthViewModel : ViewModel() {
          userDocumentRef.value = db.collection("Users").document(userId.value!!)
          fetchUser()
          fetchImages()
+         fetchComments()
         }
 
 
@@ -227,6 +229,41 @@ class AuthViewModel : ViewModel() {
             .addOnFailureListener { e ->
 
             }
+    }
+
+
+    fun fetchComments() {
+        db.collection("Comments").get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val documents = task.result!!.documents
+                val commentsList = mutableListOf<Comments>()
+
+
+                documents.forEach { document ->
+                    val comment = document.toObject(Comments::class.java)
+
+                    fetchUserInfos(document["commentedByRef"] as DocumentReference) { user ->
+                        if (user != null) {
+                            if (comment != null) {
+                                comment.commentedBy = user
+                            }
+                        } else {
+
+                        }
+                        if (comment != null) {
+                            commentsList.add(comment)
+                        }
+                        if (commentsList.size == documents.size) {
+
+                            comments.postValue(commentsList)
+
+                        }
+                    }
+                }
+            } else {
+
+            }
+        }
     }
 
     // fonction qui permet d'enregistrer le like de l'utilisateur dans la base de données firestore pas encore fini

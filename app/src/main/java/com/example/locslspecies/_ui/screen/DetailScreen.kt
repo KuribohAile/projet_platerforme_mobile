@@ -1,5 +1,6 @@
 package com.example.locslspecies._ui.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -54,6 +55,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 
 // Les données d'une plante de la liste de plantes de l'utilisateur
+@SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
@@ -61,7 +63,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
     val position = navBackStackEntry.arguments?.getInt("position") ?: -1
     val pictures by viewModel.pictures.observeAsState(emptyList())
     var commentText by remember { mutableStateOf("") }
-    var comments by remember { mutableStateOf(listOf<Comment>()) }
+    val comments by viewModel.comments.observeAsState(emptyList())
     val scrollState = rememberLazyListState()
     val focusManager = LocalFocusManager.current
     val documentReference by viewModel.userDocumentRef.observeAsState()
@@ -111,7 +113,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                 thickness = 2.dp,
             )
 
-            LazyColumn(state = scrollState, modifier = Modifier.weight(12f)) {
+            LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
                 items(comments.size) { index ->
                     val comment = comments[index]
 
@@ -122,7 +124,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Image(
-                                painter = rememberAsyncImagePainter(comment.user.url),
+                                painter = rememberAsyncImagePainter(comment.commentedBy.imageProfileUrl),
                                 contentDescription = "Profile picture",
                                 modifier = Modifier
                                     .size(40.dp)
@@ -131,7 +133,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                             ElevatedCard(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(8.dp),
+                                    .padding(start = 6.dp),
                                 shape = RoundedCornerShape(8.dp),
                                 elevation = CardDefaults.cardElevation(
                                     defaultElevation = 0.dp
@@ -142,7 +144,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                             ) {
                             Spacer(modifier = Modifier.width(8.dp))
                             Column {
-                                Text(text = comment.user.name, fontWeight = FontWeight.Bold)
+                                Text(text = comment.commentedBy.surname, fontWeight = FontWeight.Bold)
                                 Text(text = comment.text)
                             }
                         }
@@ -150,7 +152,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                 }
             }
         }
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.weight(0.5f))
 
         TextField(
             value = commentText,
@@ -169,7 +171,13 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = {
                 if (commentText.isNotBlank()) {
-                    comments = comments + Comment(commentText, user)
+                    val comment = Comments(
+                        text = commentText,
+                        commentedByRef = documentReference as DocumentReference,
+                        commentedAt = Timestamp.now(),
+                    )
+                    viewModel.addComment(comment, position)
+                    viewModel.fetchComments()
                     commentText = ""
                     focusManager.clearFocus()
                 }
@@ -177,7 +185,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
             trailingIcon = {
                 IconButton(onClick = {
                     if (commentText.isNotBlank()) {
-                        comments = comments + Comment(commentText, user)
+                       // comments = comments + Comment(commentText, user)
 
                         focusManager.clearFocus()
                         val comment = Comments(
@@ -186,6 +194,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                         commentedAt = Timestamp.now(),
                         )
                         viewModel.addComment(comment, position)
+                        viewModel.fetchComments()
                         commentText = ""
                     }
                 }) {
