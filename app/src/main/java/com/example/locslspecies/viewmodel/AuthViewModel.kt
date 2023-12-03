@@ -4,12 +4,12 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.locslspecies.model.Comments
 import com.example.locslspecies.model.Pictures
 import com.example.locslspecies.model._User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -26,6 +26,7 @@ class AuthViewModel : ViewModel() {
     val pictures = MutableLiveData<List<Pictures>>()
     val user = MutableLiveData<_User>()
     val userDocumentRef = MutableLiveData<DocumentReference>()
+    val picturesRef = mutableListOf<DocumentReference>()
 
 
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -140,29 +141,42 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun fetchImages(){
-        var picturesList = listOf<Pictures>()
+    fun fetchImages() {
         db.collection("Pictures").get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                 picturesList = task.result!!.map { document ->
+                val documents = task.result!!.documents
+                val picturesList = mutableListOf<Pictures>()
+
+
+                documents.forEach { document ->
                     val picture = document.toObject(Pictures::class.java)
+                    val docRef = document.reference
+                    picturesRef.add(docRef)
 
                     fetchUserInfos(document["postedByRef"] as DocumentReference) { user ->
                         if (user != null) {
-
-                            picture.postedBy = user
+                            if (picture != null) {
+                                picture.postedBy = user
+                            }
                         } else {
-                            // Handle the error or absence of user data
+
+                        }
+                        if (picture != null) {
+                            picturesList.add(picture)
+                        }
+                        if (picturesList.size == documents.size) {
+
+                            pictures.postValue(picturesList)
+
                         }
                     }
-                    picture
                 }
-                pictures.postValue(picturesList)
             } else {
-                // Handle error
+
             }
         }
     }
+
 
 
     fun fetchUserInfos(userRef: DocumentReference, callback: (user: _User?) -> Unit) {
@@ -195,15 +209,26 @@ class AuthViewModel : ViewModel() {
     }
 
     // fonction qui permet d'enregistrer le commentaire de l'utilisateur dans la base de données firestore pas encore fini
-    fun commentOnImage(imageId: String, commentText: String) {
-        val userId = Firebase.auth.currentUser?.uid ?: return
-        val newComment = mapOf(
-            "text" to commentText,
-            "commentedBy" to userId,
-            "commentedAt" to FieldValue.serverTimestamp()
-        )
+    fun addComment(comment: Comments, position: Int) {
+        val pictureDocRef = picturesRef.getOrNull(position) ?: return
+        db.collection("Comments").add(comment)
+            .addOnSuccessListener { documentReference ->
 
+
+                pictureDocRef
+                    .update("comments", documentReference)
+                    .addOnSuccessListener {
+
+                    }
+                    .addOnFailureListener { e ->
+
+                    }
+            }
+            .addOnFailureListener { e ->
+
+            }
     }
+
     // fonction qui permet d'enregistrer le like de l'utilisateur dans la base de données firestore pas encore fini
     fun likeImage(imageId: String) {
         val userId = Firebase.auth.currentUser?.uid ?: return
