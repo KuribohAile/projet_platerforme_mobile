@@ -16,9 +16,9 @@ import com.example.locslspecies.model.UsersPictures
 fun NavHost(
     navController: NavHostController,
     userPictures: List<UserPictures>,
-    usersPictures: List<UsersPictures>
+
 ) {
 
-    NavGraph(navController, userPictures, usersPictures)
+    NavGraph(navController, userPictures)
 
 }

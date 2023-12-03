@@ -1,4 +1,4 @@
-package com.example.locslspecies._ui
+package com.example.locslspecies._ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -75,9 +75,8 @@ fun ProfileScreen(onDisconnect: () -> Unit) {
             Chip(label = "Photographie")
             Chip(label = "Musique")
             Chip(label = "chasse")
-            Chip(label = "Nature")
         }
-        Spacer(modifier = Modifier.height(150.dp))
+        Spacer(modifier = Modifier.height(100.dp))
 
         // bouton qui permet de se deconnecter l'utilisateur
         Button(onClick = onDisconnect,  colors = ButtonDefaults.buttonColors(Color(0xFF2D9AAC)), modifier = Modifier

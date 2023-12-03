@@ -14,5 +14,6 @@ sealed class Route(var title: String, var icon: Int, var screen_route: String) {
     object Profile : Route("Profile", R.drawable.profile_24, "profile")
     object SignIn : Route("Connecter", R.drawable.home_24, "signIn")
     object SignUp : Route("Inscrire", R.drawable.home_24, "signUp")
+    object Detail : Route("Detail", R.drawable.home_24, "detail/{position}")
 
 }

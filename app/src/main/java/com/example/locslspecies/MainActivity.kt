@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier.padding(paddingValues)
                     ) {
-                        NavHost(navController = navController , userPictures = AllUserslants, usersPictures = Userplants)
+                        NavHost(navController = navController, userPictures = AllUserslants)
                     }
                 }
             }

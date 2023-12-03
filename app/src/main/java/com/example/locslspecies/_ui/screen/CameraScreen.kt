@@ -1,8 +1,8 @@
-package com.example.locslspecies._ui
+package com.example.locslspecies._ui.screen
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -18,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,20 +28,23 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import com.example.locslspecies.helper.requestPermission
-import com.example.locslspecies.model.GeoPoint
+import com.example.locslspecies.model.Coordinate
 import com.example.locslspecies.model.Pictures
-import com.example.locslspecies.model._User
 import com.example.locslspecies.viewmodel.AuthViewModel
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentReference
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Objects
 
 // fonction qui permet de prendre une photo
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun CameraScreen() {
     val viewModel: AuthViewModel = viewModel()
+    val documentReference by viewModel.userDocumentRef.observeAsState()
+
     val context = LocalContext.current
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
@@ -120,14 +124,12 @@ fun CameraScreen() {
             val picture = Pictures(
                 url = it.toString(),
                 postedAt = Timestamp(Date()),
-                scientificName = "scientificName",
-                commonName = "commonName",
-                family = "family",
-                comments = "",
-                localization = listOf(GeoPoint.latitude, GeoPoint.longitude),
-                locatedIn = listOf( Pair(0.0,0.0)),
-                validation = 0,
-                postedBy = viewModel.userId.value.toString(),
+                scientificName = "Myrtaceae",
+                commonName = "Myrte",
+                family = "Myrtus",
+                coordinate = listOf(Coordinate.latitude, Coordinate.longitude),
+                validation = 2,
+                postedByRef = documentReference as DocumentReference
                 )
 
                  viewModel.insertUserPicture(picture = picture)

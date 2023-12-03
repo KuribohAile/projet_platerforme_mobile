@@ -1,4 +1,4 @@
-package com.example.locslspecies._ui
+package com.example.locslspecies._ui.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

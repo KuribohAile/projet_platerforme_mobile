@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.locslspecies.model.AuthUiState
+import com.example.locslspecies.viewmodel.AuthUiState
 
 /**
  * Composant pour la gestion des erreurs liées à l'authentification.

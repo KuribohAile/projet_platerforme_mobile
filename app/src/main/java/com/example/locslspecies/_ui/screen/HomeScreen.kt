@@ -1,6 +1,7 @@
-package com.example.locslspecies._ui
+package com.example.locslspecies._ui.screen
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -14,8 +15,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,26 +27,40 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.locslspecies.model.UsersPictures
+import com.example.locslspecies.viewmodel.AuthViewModel
+import java.util.Date
 
 // Les données de la liste de plantes de l'utilisateur
 @Composable
-fun HomeScreen(usersPictures: List<UsersPictures>) {
+fun HomeScreen(navController: NavHostController) {
     val context = LocalContext.current
+    val viewModel: AuthViewModel = viewModel()
+    val usersPictures by viewModel.pictures.observeAsState(emptyList())
+    Log.d("MYTAGG", "NavGraph:  ${usersPictures.getOrNull(0)?.postedBy?.surname}")
     LazyColumn {
-        items(usersPictures) { plant ->
+        items(usersPictures) { picture ->
             HomeScreen(
-                imageUrl = plant.imageUrl,
-                photographer = plant.photographer,
-                date = plant.date,
-                scientificName = plant.scientificName,
-                commonName = plant.commonName,
-                family = plant.family,
-                context = context
+                imageUrl = picture.url,
+                postedBy = picture.postedBy.surname,
+                date = picture.postedAt.toDate(),
+                scientificName = picture.scientificName,
+                commonName = picture.commonName,
+                family = picture.family,
+                context = context,
+                navController = navController,
+                position = usersPictures.indexOf(picture)
+            )
+            Divider(
+                color = Color(0xFF3B808B),
+                thickness = 2.dp,
             )
         }
+
     }
+
 }
 
 // Les données d'une plante de la liste de plantes de l'utilisateur
@@ -50,12 +68,14 @@ fun HomeScreen(usersPictures: List<UsersPictures>) {
 fun HomeScreen(
 
     imageUrl: String,
-    photographer: String,
-    date: String,
+    postedBy: String,
+    date: Date,
     scientificName: String,
     commonName: String,
     family: String,
-    context: Context
+    context: Context,
+    navController: NavHostController,
+    position: Int
 ) {
     Column(
         modifier = Modifier
@@ -72,12 +92,12 @@ fun HomeScreen(
         )
         Column(modifier = Modifier.padding(8.dp)) {
             Text(
-                text = photographer,
+                text = postedBy,
                 fontSize = 12.sp,
                 color = Color.Gray
             )
             Text(
-                text = date,
+                text = date.toString(),
                 fontSize = 12.sp,
                 color = Color.Gray
             )
@@ -92,12 +112,16 @@ fun HomeScreen(
                     Text(text = family, fontSize = 14.sp, color = Color.Black)
                 }
                 Column(horizontalAlignment = Alignment.End) {
-                    Button(onClick = { Toast.makeText(context, "pas encore implemente", Toast.LENGTH_LONG).show() }) {
+                    Button(onClick = {
+
+                        navController.navigate("detail/$position")
+                    }) {
                         Text("DETAILS")
                     }
                     Spacer(modifier = Modifier.height(4.dp))
                     Button(onClick = { Toast.makeText(context, "pas encore implemente", Toast.LENGTH_LONG).show() }) {
                         Text("VALIDER")
+
                     }
                 }
             }

@@ -6,17 +6,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.locslspecies._ui.CameraScreen
-import com.example.locslspecies._ui.MapViewScreen
-import com.example.locslspecies._ui.HomeScreen
-import com.example.locslspecies._ui.GalleryScreen
-import com.example.locslspecies._ui.ProfileScreen
-import com.example.locslspecies._ui.SignInScreen
-import com.example.locslspecies._ui.SignUpScreen
+import androidx.navigation.navArgument
+import com.example.locslspecies._ui.screen.CameraScreen
+import com.example.locslspecies._ui.screen.DetailScreen
+import com.example.locslspecies._ui.screen.MapViewScreen
+import com.example.locslspecies._ui.screen.HomeScreen
+import com.example.locslspecies._ui.screen.GalleryScreen
+import com.example.locslspecies._ui.screen.ProfileScreen
+import com.example.locslspecies._ui.screen.SignInScreen
+import com.example.locslspecies._ui.screen.SignUpScreen
 import com.example.locslspecies.model.UserPictures
-import com.example.locslspecies.model.UsersPictures
 import com.example.locslspecies.viewmodel.AuthViewModel
 
 // Ce NavHost gère la navigation dans l'application. Il définit les routes et les écrans correspondants.
@@ -26,10 +28,10 @@ import com.example.locslspecies.viewmodel.AuthViewModel
 fun NavGraph(
     navController: NavHostController,
     userPictures: List<UserPictures>,
-    usersPictures: List<UsersPictures>
 ) {
     val viewModel: AuthViewModel = viewModel()
     val isLoggedIn by viewModel.isLoggedIn.observeAsState(false)
+
 
     NavHost(navController, startDestination = Route.Home.screen_route) {
         composable("signIn") {
@@ -40,12 +42,12 @@ fun NavGraph(
         }
 
         composable("home") {
-            HomeScreen(usersPictures)
+            HomeScreen(navController)
         }
         composable(Route.Home.screen_route) {
 
             if (isLoggedIn) {
-                HomeScreen(usersPictures)
+                HomeScreen(navController)
             } else if (!isLoggedIn) {
                 SignInScreen(navController)
             }
@@ -54,6 +56,7 @@ fun NavGraph(
         composable(Route.Map.screen_route) {
             MapViewScreen()
         }
+
         composable(Route.Camera.screen_route) {
             CameraScreen()
         }
@@ -62,6 +65,9 @@ fun NavGraph(
             GalleryScreen(userPictures)
         }
 
+        composable(Route.Detail.screen_route, arguments = listOf(navArgument("position") { type = NavType.IntType })) {
+            DetailScreen(navBackStackEntry = it)
+        }
         composable(Route.Profile.screen_route) {
             ProfileScreen(onDisconnect = {
                 viewModel.logout()

@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
-import com.example.locslspecies.model.GeoPoint
+import com.example.locslspecies.model.Coordinate
 import com.google.android.gms.location.LocationServices
 
 fun retrieveLocation(context: Context) {
@@ -29,8 +29,8 @@ fun retrieveLocation(context: Context) {
             val latitude = location.latitude
             val longitude = location.longitude
             // Handle the location data
-            GeoPoint.latitude = latitude
-            GeoPoint.longitude = longitude
+            Coordinate.latitude = latitude
+            Coordinate.longitude = longitude
         }
     }
 }

@@ -4,14 +4,12 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.locslspecies.model.AuthUiState
 import com.example.locslspecies.model.Pictures
-import com.example.locslspecies.model.UsersPictures
 import com.example.locslspecies.model._User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -25,17 +23,30 @@ class AuthViewModel : ViewModel() {
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
     val  userId = MutableLiveData<String>()
     private val storageRef = Firebase.storage.reference
+    val pictures = MutableLiveData<List<Pictures>>()
+    val user = MutableLiveData<_User>()
+    val userDocumentRef = MutableLiveData<DocumentReference>()
+
 
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         _isLoggedIn.value = firebaseAuth.currentUser != null
          userId.value = firebaseAuth.currentUser?.uid ?: ""
+
+        if(userId.value !== ""){
+         userDocumentRef.value = db.collection("Users").document(userId.value!!)
+         fetchUser()
+         fetchImages()
+        }
+
+
     }
 
 // inititialisation de l'authentification listener
     init {
 
         Firebase.auth.addAuthStateListener(authStateListener)
-    }
+
+}
 
 
   // fonction qui permet de s'inscrire
@@ -47,7 +58,6 @@ class AuthViewModel : ViewModel() {
                 if (task.isSuccessful) {
                     uiState.value = AuthUiState.Success
                     registerUserInfos(user)
-
 
                 } else {
 
@@ -100,9 +110,8 @@ class AuthViewModel : ViewModel() {
     }
 
     fun insertUserPicture(picture: Pictures){
-        // Add a new document with a generated ID
-        db.collection("Pictures").document(userId.value!!)
-            .set(picture)
+
+        db.collection("Pictures").add(picture)
             .addOnSuccessListener {
             }
             .addOnFailureListener { e ->
@@ -129,6 +138,60 @@ class AuthViewModel : ViewModel() {
                 task.exception?.let { onFailure(it) }
             }
         }
+    }
+
+    fun fetchImages(){
+        var picturesList = listOf<Pictures>()
+        db.collection("Pictures").get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                 picturesList = task.result!!.map { document ->
+                    val picture = document.toObject(Pictures::class.java)
+
+                    fetchUserInfos(document["postedByRef"] as DocumentReference) { user ->
+                        if (user != null) {
+
+                            picture.postedBy = user
+                        } else {
+                            // Handle the error or absence of user data
+                        }
+                    }
+                    picture
+                }
+                pictures.postValue(picturesList)
+            } else {
+                // Handle error
+            }
+        }
+    }
+
+
+    fun fetchUserInfos(userRef: DocumentReference, callback: (user: _User?) -> Unit) {
+        db.collection("Users").document(userRef.id).get()
+            .addOnSuccessListener { documentSnapshot ->
+                val user = documentSnapshot.toObject(_User::class.java)
+                callback(user)
+            }
+            .addOnFailureListener {
+                // Handle any errors here, for example, by calling the callback with null
+                callback(null)
+            }
+    }
+
+    private fun fetchUser() {
+        db.collection("Users").document(userId.value!!).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val user = document.toObject(_User::class.java)
+
+
+                    // Use the user object as needed
+                } else {
+                    // Handle the case where the document does not exist
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle any errors here
+            }
     }
 
     // fonction qui permet d'enregistrer le commentaire de l'utilisateur dans la base de données firestore pas encore fini

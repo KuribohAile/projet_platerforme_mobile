@@ -1,4 +1,4 @@
-package com.example.locslspecies._ui
+package com.example.locslspecies._ui.screen
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,7 +20,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.locslspecies.model.UserPictures
-import com.example.locslspecies.model.UsersPictures
 
 // fonction qui permet de créer une liste de plantes de tous les utilisateurs
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
