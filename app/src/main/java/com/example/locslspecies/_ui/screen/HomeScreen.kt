@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,7 +32,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.locslspecies.viewmodel.AuthViewModel
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 // Les données de la liste de plantes de l'utilisateur
 @Composable
@@ -94,16 +97,22 @@ fun HomeScreen(
                 .fillMaxWidth()
         )
         Column(modifier = Modifier.padding(8.dp)) {
-            Text(
-                text = "Poste par: $postedBy",
-                fontSize = 12.sp,
-                color = Color.Gray
-            )
-            Text(
-                text = "Date: ${date.toString()}",
-                fontSize = 12.sp,
-                color = Color.Gray
-            )
+            Row ( modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween){
+                Text(
+                    text = "Poste par: $postedBy",
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.weight(1f)
+                )
+                Text(
+                    text = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(date),
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+
+                )
+            }
+
             Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),

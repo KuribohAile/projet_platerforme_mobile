@@ -3,6 +3,7 @@ package com.example.locslspecies._ui.screen
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -53,6 +54,8 @@ import com.example.locslspecies.model.Comments
 import com.example.locslspecies.viewmodel.AuthViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 // Les données d'une plante de la liste de plantes de l'utilisateur
 @SuppressLint("SuspiciousIndentation")
@@ -60,7 +63,7 @@ import com.google.firebase.firestore.DocumentReference
 @Composable
 fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
     val viewModel: AuthViewModel = viewModel()
-    val position = navBackStackEntry.arguments?.getInt("position") ?: -1
+    val position = navBackStackEntry.arguments?.getInt("position") ?: 0
     val pictures by viewModel.pictures.observeAsState(emptyList())
     var commentText by remember { mutableStateOf("") }
     val comments by viewModel.comments.observeAsState(emptyList())
@@ -84,38 +87,52 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .height(200.dp)
+                    .height(180.dp)
                     .fillMaxWidth()
             )
-            Column(modifier = Modifier.padding(8.dp)) {
-                Text(
-                    text = "Poste par: ${picture.postedBy.surname}",
-                    fontSize = 12.sp,
-                    color = Color.Gray
+            Column(modifier = Modifier.padding(4.dp)) {
+                Column(modifier = Modifier.padding(1.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Poste par: ${picture.postedBy.surname}",
+                            fontSize = 12.sp,
+                            color = Color.Gray,
+                            modifier = Modifier.weight(1f)
+                        )
+                        Text(
+                            text = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(
+                                picture.postedAt.toDate()
+                            ),
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                    }
+                }
+                    //Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Nom: ${picture.scientificName}",
+                        fontSize = 14.sp,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = "Nom scientifique: ${picture.commonName}",
+                        fontSize = 14.sp,
+                        color = Color.Black
+                    )
+                    Text(text = "Famille: ${picture.family}", fontSize = 14.sp, color = Color.Black)
+                }
+                // Spacer(modifier = Modifier.weight(1f))
+                Divider(
+                    color = Color(0xFF3B808B),
+                    thickness = 2.dp,
                 )
-                Text(
-                    text = "Date: ${picture.postedAt.toDate().toString()}",
-                    fontSize = 12.sp,
-                    color = Color.Gray
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(text = "Nom: ${picture.scientificName}", fontSize = 14.sp, color = Color.Black)
-                Text(
-                    text = "Nom scientifique: ${picture.commonName}",
-                    fontSize = 14.sp,
-                    color = Color.Black
-                )
-                Text(text = "Famille: ${picture.family}", fontSize = 14.sp, color = Color.Black)
-            }
-            // Spacer(modifier = Modifier.weight(1f))
-            Divider(
-                color = Color(0xFF3B808B),
-                thickness = 2.dp,
-            )
 
-            LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
-                items(comments.size) { index ->
-                    val comment = comments[index]
+                LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
+                    items(comments.size) { index ->
+                        val comment = comments[index]
 
                         Row(
                             modifier = Modifier
@@ -142,82 +159,74 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                                 )
                             ) {
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Column {
-                                Text(text = comment.commentedBy.surname, fontWeight = FontWeight.Bold)
-                                Text(text = comment.text)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Column {
+                                    Text(
+                                        text = comment.commentedBy.surname,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Text(text = comment.text)
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        Spacer(modifier = Modifier.weight(0.5f))
+            Spacer(modifier = Modifier.weight(0.5f))
 
-        TextField(
-            value = commentText,
-            onValueChange = { commentText = it },
-            placeholder = { Text("Ajouter un commentaire...") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+            TextField(
+                value = commentText,
+                onValueChange = { commentText = it },
+                placeholder = { Text("Ajouter un commentaire...") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
                 //.focusRequester(focusRequester),
-            shape = RoundedCornerShape(16.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.Black,
-                focusedIndicatorColor = Color.Gray,
-                unfocusedIndicatorColor = Color.Gray
-            ),
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-            keyboardActions = KeyboardActions(onDone = {
-                if (commentText.isNotBlank()) {
-                    val comment = Comments(
-                        text = commentText,
-                        commentedByRef = documentReference as DocumentReference,
-                        commentedAt = Timestamp.now(),
-                    )
-                    viewModel.addComment(comment, position)
-                    viewModel.fetchComments()
-                    commentText = ""
-                    focusManager.clearFocus()
-                }
-            }),
-            trailingIcon = {
-                IconButton(onClick = {
+                shape = RoundedCornerShape(16.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    cursorColor = Color.Black,
+                    focusedIndicatorColor = Color.Gray,
+                    unfocusedIndicatorColor = Color.Gray
+                ),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(onDone = {
                     if (commentText.isNotBlank()) {
-                       // comments = comments + Comment(commentText, user)
-
-                        focusManager.clearFocus()
                         val comment = Comments(
-                        text = commentText,
-                        commentedByRef = documentReference as DocumentReference,
-                        commentedAt = Timestamp.now(),
+                            text = commentText,
+                            commentedByRef = documentReference as DocumentReference,
+                            commentedAt = Timestamp.now(),
                         )
                         viewModel.addComment(comment, position)
                         viewModel.fetchComments()
                         commentText = ""
+                        focusManager.clearFocus()
                     }
-                }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.baseline_send_24), // Replace with your send icon resource
-                        contentDescription = "envoi",
-                        modifier = Modifier.size(24.dp),
+                }),
+                trailingIcon = {
+                    IconButton(onClick = {
+                        if (commentText.isNotBlank()) {
+                            // comments = comments + Comment(commentText, user)
 
-                    )
+                            focusManager.clearFocus()
+                            val comment = Comments(
+                                text = commentText,
+                                commentedByRef = documentReference as DocumentReference,
+                                commentedAt = Timestamp.now(),
+                            )
+                            viewModel.addComment(comment, position)
+                            viewModel.fetchComments()
+                            commentText = ""
+                        }
+                    }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_send_24), // Replace with your send icon resource
+                            contentDescription = "envoi",
+                            modifier = Modifier.size(24.dp),
+
+                            )
+                    }
                 }
-            }
-        )
+            )
 
+        }
     }
-}
-
-
-data class Comment(
-    val text: String,
-    val user: currentUser // Assuming User class has properties like name and profilePictureUrl
-)
-data class currentUser(
-    val name: String,
-    val url: String // Assuming User class has properties like name and profilePictureUrl
-)
-val user = currentUser("John Doe", "https://avatars.githubusercontent.com/u/77149638?v=4")

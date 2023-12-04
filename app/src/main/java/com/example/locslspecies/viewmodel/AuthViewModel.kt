@@ -10,6 +10,7 @@ import com.example.locslspecies.model._User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -24,7 +25,6 @@ class AuthViewModel : ViewModel() {
     val  userId = MutableLiveData<String>()
     private val storageRef = Firebase.storage.reference
     val pictures = MutableLiveData<List<Pictures>>()
-    val user = MutableLiveData<_User>()
     val userDocumentRef = MutableLiveData<DocumentReference>()
     val picturesRef = mutableListOf<DocumentReference>()
     val comments = MutableLiveData<List<Comments>>()
@@ -144,7 +144,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun fetchImages() {
-        db.collection("Pictures").get().addOnCompleteListener { task ->
+        db.collection("Pictures").orderBy("postedAt", Query.Direction.DESCENDING).get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val documents = task.result!!.documents
                 val picturesList = mutableListOf<Pictures>()

@@ -54,7 +54,7 @@ fun NavGraph(
         }
 
         composable(Route.Map.screen_route) {
-            MapViewScreen()
+            MapViewScreen(navController)
         }
 
         composable(Route.Camera.screen_route) {
@@ -62,7 +62,7 @@ fun NavGraph(
         }
 
         composable(Route.Gallery.screen_route) {
-            GalleryScreen(userPictures)
+            GalleryScreen(navBackStackEntry = it, navController)
         }
 
         composable(Route.Detail.screen_route, arguments = listOf(navArgument("position") { type = NavType.IntType })) {
