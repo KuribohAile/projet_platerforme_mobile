@@ -136,42 +136,55 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
             LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
                     items(comments.size) { index ->
                         val comment = comments[index]
+                        val idUser = comments.find {comment  -> comment.idPicture == idPicture }?.idUser
+                        if (comment.idPicture == idPicture){
 
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Image(
-                                painter = rememberAsyncImagePainter(users.find { user -> user.id == comment.idUser }?.imageProfileUrl),
-                                contentDescription = "Profile picture",
-                                modifier = Modifier
-                                    .size(40.dp)
-                                    .clip(RoundedCornerShape(50)) // Circular image
-                            )
-                            ElevatedCard(
+
+
+
+
+                            Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(start = 6.dp),
-                                shape = RoundedCornerShape(8.dp),
-                                elevation = CardDefaults.cardElevation(
-                                    defaultElevation = 0.dp
-                                ),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                                )
+                                    .padding(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Column {
-                                    Text(
-                                        text = users.find { user -> user.id == comment.idUser }?.name.toString(),
-                                        fontWeight = FontWeight.Bold
+                                Image(
+                                    painter = rememberAsyncImagePainter(users.find {user  -> user.id == comment.idUser }?.imageProfileUrl),
+                                    contentDescription = "Profile picture",
+                                    modifier = Modifier
+                                        .size(40.dp)
+                                        .clip(RoundedCornerShape(50)) // Circular image
+                                )
+                                ElevatedCard(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(start = 6.dp),
+                                    shape = RoundedCornerShape(8.dp),
+                                    elevation = CardDefaults.cardElevation(
+                                        defaultElevation = 0.dp
+                                    ),
+                                    colors = CardDefaults.cardColors(
+                                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
                                     )
-                                    Text(text = comment.text)
+                                ) {
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Column {
+                                        Text(
+                                            text = users.find {user  -> user.id == comment.idUser }?.name.toString(),
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                        Text(text = comment.text)
+                                    }
                                 }
                             }
+
+
+
+
+
                         }
+
                     }
                 }
 
