@@ -133,6 +133,7 @@ int dimen notification_subtext_size 0x7f030015
 int dimen notification_top_pad 0x7f030016
 int dimen notification_top_pad_large_text 0x7f030017
 int drawable abc_vector_test 0x7f040001
+int drawable baseline_send_24 0x7f040034
 int drawable camera_24 0x7f040002
 int drawable common_full_open_on_phone 0x7f040003
 int drawable common_google_signin_btn_icon_dark 0x7f040004

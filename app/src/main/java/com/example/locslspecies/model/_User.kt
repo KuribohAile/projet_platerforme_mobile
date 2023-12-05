@@ -1,6 +1,7 @@
 package com.example.locslspecies.model
 
 data class _User (
+    var id: String = "",
     var name: String = "",
     var surname: String = "",
     var description: String = "",

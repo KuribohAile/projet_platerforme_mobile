@@ -1,12 +1,18 @@
 package com.example.locslspecies.viewmodel
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.locslspecies.ApiService
+import com.example.locslspecies.model.ApiResponse
 import com.example.locslspecies.model.Comments
+import com.example.locslspecies.model.Coordinate
 import com.example.locslspecies.model.Pictures
 import com.example.locslspecies.model._User
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
@@ -15,6 +21,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import java.util.Date
+import java.util.UUID
 
 
 class AuthViewModel : ViewModel() {
@@ -25,9 +34,11 @@ class AuthViewModel : ViewModel() {
     val  userId = MutableLiveData<String>()
     private val storageRef = Firebase.storage.reference
     val pictures = MutableLiveData<List<Pictures>>()
+    val users = MutableLiveData<List<_User>>()
     val userDocumentRef = MutableLiveData<DocumentReference>()
-    val picturesRef = mutableListOf<DocumentReference>()
     val comments = MutableLiveData<List<Comments>>()
+    val apiService = ApiService.create()
+    var response = MutableLiveData<ApiResponse>()
 
 
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -39,6 +50,7 @@ class AuthViewModel : ViewModel() {
          fetchUser()
          fetchImages()
          fetchComments()
+         fetchUsers()
         }
 
 
@@ -103,8 +115,9 @@ class AuthViewModel : ViewModel() {
     // fonction qui permet d'enregistrer les informations de l'utilisateur dans la base de données firestore
     fun registerUserInfos(user: _User){
         // Add a new document with a generated ID
-        db.collection("Users").document(userId.value!!)
-            .set(user)
+        user.id = userId.value!!
+        db.collection("Users")
+            .add(user)
             .addOnSuccessListener {
             }
             .addOnFailureListener { e ->
@@ -116,6 +129,7 @@ class AuthViewModel : ViewModel() {
 
         db.collection("Pictures").add(picture)
             .addOnSuccessListener {
+                fetchImages()
             }
             .addOnFailureListener { e ->
 
@@ -144,52 +158,20 @@ class AuthViewModel : ViewModel() {
     }
 
     fun fetchImages() {
-        db.collection("Pictures").orderBy("postedAt", Query.Direction.DESCENDING).get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val documents = task.result!!.documents
-                val picturesList = mutableListOf<Pictures>()
+        db.collection("Pictures").orderBy("postedAt", Query.Direction.DESCENDING).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val documents = task.result!!.documents
+                    val picturesList = mutableListOf<Pictures>()
 
+                    documents.forEach { document ->
+                        val picture = document.toObject(Pictures::class.java)
+                        picturesList.add(picture!!)
 
-                documents.forEach { document ->
-                    val picture = document.toObject(Pictures::class.java)
-                    val docRef = document.reference
-                    picturesRef.add(docRef)
-
-                    fetchUserInfos(document["postedByRef"] as DocumentReference) { user ->
-                        if (user != null) {
-                            if (picture != null) {
-                                picture.postedBy = user
-                            }
-                        } else {
-
-                        }
-                        if (picture != null) {
-                            picturesList.add(picture)
-                        }
-                        if (picturesList.size == documents.size) {
-
-                            pictures.postValue(picturesList)
-
-                        }
                     }
+                    pictures.postValue(picturesList)
                 }
-            } else {
 
-            }
-        }
-    }
-
-
-
-    fun fetchUserInfos(userRef: DocumentReference, callback: (user: _User?) -> Unit) {
-        db.collection("Users").document(userRef.id).get()
-            .addOnSuccessListener { documentSnapshot ->
-                val user = documentSnapshot.toObject(_User::class.java)
-                callback(user)
-            }
-            .addOnFailureListener {
-                // Handle any errors here, for example, by calling the callback with null
-                callback(null)
             }
     }
 
@@ -199,32 +181,41 @@ class AuthViewModel : ViewModel() {
                 if (document != null) {
                     val user = document.toObject(_User::class.java)
 
-
-                    // Use the user object as needed
                 } else {
-                    // Handle the case where the document does not exist
+
                 }
             }
             .addOnFailureListener { exception ->
-                // Handle any errors here
             }
     }
 
+
+    fun fetchUsers() {
+        db.collection("Users").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val documents = task.result!!.documents
+                    val userList = mutableListOf<_User>()
+
+                    documents.forEach { document ->
+                        val user = document.toObject(_User::class.java)
+                        userList.add(user!!)
+
+                    }
+                    users.postValue(userList)
+                }
+
+            }
+    }
+
+
+
     // fonction qui permet d'enregistrer le commentaire de l'utilisateur dans la base de données firestore pas encore fini
-    fun addComment(comment: Comments, position: Int) {
-        val pictureDocRef = picturesRef.getOrNull(position) ?: return
+    fun addComment(comment: Comments, position: String) {
+
         db.collection("Comments").add(comment)
             .addOnSuccessListener { documentReference ->
 
-
-                pictureDocRef
-                    .update("comments", documentReference)
-                    .addOnSuccessListener {
-
-                    }
-                    .addOnFailureListener { e ->
-
-                    }
             }
             .addOnFailureListener { e ->
 
@@ -241,30 +232,39 @@ class AuthViewModel : ViewModel() {
 
                 documents.forEach { document ->
                     val comment = document.toObject(Comments::class.java)
-
-                    fetchUserInfos(document["commentedByRef"] as DocumentReference) { user ->
-                        if (user != null) {
-                            if (comment != null) {
-                                comment.commentedBy = user
-                            }
-                        } else {
-
-                        }
-                        if (comment != null) {
-                            commentsList.add(comment)
-                        }
-                        if (commentsList.size == documents.size) {
-
-                            comments.postValue(commentsList)
-
-                        }
+                    if (comment != null) {
+                        commentsList.add(comment)
                     }
                 }
-            } else {
-
+                comments.postValue(commentsList)
             }
         }
     }
+
+    fun pictureRecognition(capturedImageUri: Uri) {
+        uploadImage(capturedImageUri, onSuccess = {
+            viewModelScope.launch {
+               response.value = apiService.getImageInfos(it.toString())
+                Log.d("RESPP", "pictureRecognitions: + $it" + response.value!!.Name)
+                val picture = Pictures(
+                    id = UUID.randomUUID().toString(),
+                    idUser = userId.value!!.toString(),
+                    postedAt = Timestamp(Date()),
+                    url = it.toString(),
+                    scientificName = response.value!!.Scientific_name,
+                    commonName = response.value!!.Name,
+                    family = response.value!!.Family,
+                    coordinate = listOf(Coordinate.latitude, Coordinate.longitude),
+                    validation = 2,
+                )
+                insertUserPicture(picture = picture)
+
+            }
+
+        }, onFailure = {
+    })
+}
+
 
     // fonction qui permet d'enregistrer le like de l'utilisateur dans la base de données firestore pas encore fini
     fun likeImage(imageId: String) {

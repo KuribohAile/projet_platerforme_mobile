@@ -30,6 +30,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -53,84 +54,86 @@ import com.example.locslspecies.R
 import com.example.locslspecies.model.Comments
 import com.example.locslspecies.viewmodel.AuthViewModel
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentReference
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
+import java.util.UUID
 
 // Les données d'une plante de la liste de plantes de l'utilisateur
 @SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
+
     val viewModel: AuthViewModel = viewModel()
-    val position = navBackStackEntry.arguments?.getInt("position") ?: 0
+    val idPicture = navBackStackEntry.arguments?.getString("idPicture") ?: ""
     val pictures by viewModel.pictures.observeAsState(emptyList())
+    val users by viewModel.users.observeAsState(emptyList())
+    val idUser by viewModel.userId.observeAsState()
     var commentText by remember { mutableStateOf("") }
     val comments by viewModel.comments.observeAsState(emptyList())
     val scrollState = rememberLazyListState()
     val focusManager = LocalFocusManager.current
     val documentReference by viewModel.userDocumentRef.observeAsState()
+    val picture = pictures.find { picture -> picture.id == idPicture }
+    val userName = users.find { user -> user.id == picture?.idUser }?.name
 
-    DisposableEffect(Unit) {
-        viewModel.fetchImages()
-        onDispose { }
-    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .border(1.dp, Color.LightGray, RoundedCornerShape(4.dp))
     ) {
-        pictures.getOrNull(position)?.let { picture ->
-            Image(
-                painter = rememberAsyncImagePainter(picture.url),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth()
-            )
-            Column(modifier = Modifier.padding(4.dp)) {
-                Column(modifier = Modifier.padding(1.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = "Poste par: ${picture.postedBy.surname}",
-                            fontSize = 12.sp,
-                            color = Color.Gray,
-                            modifier = Modifier.weight(1f)
-                        )
-                        Text(
-                            text = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(
-                                picture.postedAt.toDate()
-                            ),
-                            fontSize = 12.sp,
-                            color = Color.Gray
-                        )
-                    }
-                }
-                    //Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = "Nom: ${picture.scientificName}",
-                        fontSize = 14.sp,
-                        color = Color.Black
-                    )
-                    Text(
-                        text = "Nom scientifique: ${picture.commonName}",
-                        fontSize = 14.sp,
-                        color = Color.Black
-                    )
-                    Text(text = "Famille: ${picture.family}", fontSize = 14.sp, color = Color.Black)
-                }
-                // Spacer(modifier = Modifier.weight(1f))
-                Divider(
-                    color = Color(0xFF3B808B),
-                    thickness = 2.dp,
-                )
 
-                LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
+        Image(
+            painter = rememberAsyncImagePainter(picture?.url),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .height(180.dp)
+                .fillMaxWidth()
+        )
+        Column(modifier = Modifier.padding(4.dp)) {
+            Column(modifier = Modifier.padding(1.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "Poste par: ${userName.toString()}",
+                        fontSize = 12.sp,
+                        color = Color.Gray,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(
+                            picture?.postedAt?.toDate() ?: Date()
+                        ),
+                        fontSize = 12.sp,
+                        color = Color.Gray
+                    )
+                }
+            }
+            //Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Nom: ${picture?.scientificName}",
+                fontSize = 14.sp,
+                color = Color.Black
+            )
+            Text(
+                text = "Nom scientifique: ${picture?.commonName}",
+                fontSize = 14.sp,
+                color = Color.Black
+            )
+            Text(text = "Famille: ${picture?.family}", fontSize = 14.sp, color = Color.Black)
+        }
+            // Spacer(modifier = Modifier.weight(1f))
+            Divider(
+                color = Color(0xFF3B808B),
+                thickness = 2.dp,
+            )
+
+            LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
                     items(comments.size) { index ->
                         val comment = comments[index]
 
@@ -141,7 +144,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Image(
-                                painter = rememberAsyncImagePainter(comment.commentedBy.imageProfileUrl),
+                                painter = rememberAsyncImagePainter(users.find { user -> user.id == comment.idUser }?.imageProfileUrl),
                                 contentDescription = "Profile picture",
                                 modifier = Modifier
                                     .size(40.dp)
@@ -162,7 +165,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Column {
                                     Text(
-                                        text = comment.commentedBy.surname,
+                                        text = users.find { user -> user.id == comment.idUser }?.name.toString(),
                                         fontWeight = FontWeight.Bold
                                     )
                                     Text(text = comment.text)
@@ -171,7 +174,7 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                         }
                     }
                 }
-            }
+
             Spacer(modifier = Modifier.weight(0.5f))
 
             TextField(
@@ -192,11 +195,13 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                 keyboardActions = KeyboardActions(onDone = {
                     if (commentText.isNotBlank()) {
                         val comment = Comments(
+                            idUser = idUser!!,
+                            idPicture = idPicture,
+                            id = UUID.randomUUID().toString(),
                             text = commentText,
-                            commentedByRef = documentReference as DocumentReference,
                             commentedAt = Timestamp.now(),
                         )
-                        viewModel.addComment(comment, position)
+                        viewModel.addComment(comment, idPicture)
                         viewModel.fetchComments()
                         commentText = ""
                         focusManager.clearFocus()
@@ -209,11 +214,13 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
 
                             focusManager.clearFocus()
                             val comment = Comments(
+                                idUser = idUser!!,
+                                idPicture = idPicture,
+                                id = UUID.randomUUID().toString(),
                                 text = commentText,
-                                commentedByRef = documentReference as DocumentReference,
                                 commentedAt = Timestamp.now(),
                             )
-                            viewModel.addComment(comment, position)
+                            viewModel.addComment(comment, idPicture)
                             viewModel.fetchComments()
                             commentText = ""
                         }
@@ -229,4 +236,5 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
             )
 
         }
-    }
+
+}

@@ -3,10 +3,12 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,14 +28,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.locslspecies.helper.requestPermission
-import com.example.locslspecies.model.Coordinate
-import com.example.locslspecies.model.Pictures
+import com.example.locslspecies.model.ApiResponse
 import com.example.locslspecies.viewmodel.AuthViewModel
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentReference
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.label.ImageLabeling
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Objects
@@ -41,10 +46,14 @@ import java.util.Objects
 // fonction qui permet de prendre une photo
 @SuppressLint("SuspiciousIndentation")
 @Composable
-fun CameraScreen() {
+fun CameraScreen(navBackStackEntry: NavBackStackEntry, navController: NavHostController) {
+
     val viewModel: AuthViewModel = viewModel()
     val documentReference by viewModel.userDocumentRef.observeAsState()
-
+    val imageLabels = remember { mutableStateListOf<String>() }
+    var response by remember { mutableStateOf<ApiResponse?>(null) }
+    var isLoading by remember { mutableStateOf(false) }
+    val image: InputImage
     val context = LocalContext.current
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
@@ -111,33 +120,51 @@ fun CameraScreen() {
     // affichage de l'image prise
     if (capturedImageUri.path?.isNotEmpty() == true) {
 
-        Image(
-            modifier = Modifier
-                .padding(70.dp, 80.dp)
-                .height(300.dp),
-            painter = rememberAsyncImagePainter(capturedImageUri),
-            contentDescription = null
-        )
+        Column {
+            Image(
+                modifier = Modifier
+                    .padding(70.dp, 80.dp)
+                    .height(300.dp),
+                painter = rememberAsyncImagePainter(capturedImageUri),
+                contentDescription = null
+            )
+            Column(modifier = Modifier.fillMaxSize(), // Fill the parent
+                horizontalAlignment = Alignment.CenterHorizontally, // Center children horizontally
+                verticalArrangement = Arrangement.Center) {
+                imageLabels.forEach { label ->
+                    Text(text = label, color = Color.Black)
+                }
+            }
 
-        viewModel.uploadImage(capturedImageUri, onSuccess = {
-           // Log.d("MYTAG", "CameraScreen: $it")
-            val picture = Pictures(
-                url = it.toString(),
-                postedAt = Timestamp(Date()),
-                scientificName = "Myrtaceae",
-                commonName = "Myrte",
-                family = "Myrtus",
-                coordinate = listOf(Coordinate.latitude, Coordinate.longitude),
-                validation = 2,
-                postedByRef = documentReference as DocumentReference
-                )
+        }
 
-                 viewModel.insertUserPicture(picture = picture)
+        try {
+            image = InputImage.fromFilePath(context, capturedImageUri)
+            val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
+            labeler.process(image)
+                .addOnSuccessListener { labels ->
+                        val text = labels.get(0).text
+                        val confidence = labels.get(0).confidence
+                        if (!(imageLabels.size >= 2)) {
+                            imageLabels.add(text)
+                            imageLabels.add(confidence.toString())
+                        }
+                        Log.d("MYTAGZ", "CameraScreen: $text")
+                        Log.d("MYTAGZ", "CameraScreen: $confidence")
+                }
+                .addOnFailureListener { e ->
+                }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
 
-        }, onFailure = {
+      LaunchedEffect(Unit) {
 
-        })
+          viewModel.pictureRecognition(capturedImageUri)
+
     }
+
+ }
 
 
 }

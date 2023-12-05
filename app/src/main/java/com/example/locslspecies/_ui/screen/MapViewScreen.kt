@@ -38,7 +38,7 @@ fun MapViewScreen(navController: NavHostController) {
                     Marker(
                         state = MarkerState(position = position),
                         title = picture.commonName,
-                        snippet = "Posted by: ${picture.postedBy.name}",
+                        snippet = "Posted by: ",
                         onClick = {
                             navController.navigate("detail/$index")
                             true

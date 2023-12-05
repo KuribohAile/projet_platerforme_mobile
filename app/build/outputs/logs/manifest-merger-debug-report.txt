@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:32:9-40:20
+INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:34:9-42:20
 	android:grantUriPermissions
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:36:13-47
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:38:13-47
 	android:authorities
 		INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:34:13-60
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:36:13-60
 	android:exported
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:35:13-37
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:37:13-37
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:33:13-62
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:35:13-62
 manifest
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-46:12
-INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-46:12
-INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-46:12
-INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-46:12
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:1-52:12
 MERGED from [io.coil-kt:coil-compose:2.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4d3bc5ec7f62a78db9fefdeac214c01a/transformed/coil-compose-2.5.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-storage-ktx:20.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/91e6b3bb8a863c5d55e16d6af6f23a98/transformed/firebase-storage-ktx-20.3.0/AndroidManifest.xml:2:1-18:12
 MERGED from [io.coil-kt:coil-compose-base:2.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/0f4f67e630a4db2a858a5a954123a1d7/transformed/coil-compose-base-2.5.0/AndroidManifest.xml:2:1-7:12
@@ -63,13 +63,20 @@ MERGED from [androidx.activity:activity-ktx:1.8.1] /Users/mohametaminendiaye/.gr
 MERGED from [com.google.maps.android:maps-ktx:3.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/273903b8cd9d1b71e3c857d5944e7028/transformed/maps-ktx-3.3.0/AndroidManifest.xml:18:1-25:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:17:1-44:12
 MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/55f9dfb0cf3572a26362c9844c4de221/transformed/play-services-location-21.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3ff4a3e3288206641cb0e325bba4a030/transformed/play-services-auth-api-phone-17.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.mlkit:image-labeling-default-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/ff3e2129683cf46ebd8c138ad7f03a02/transformed/image-labeling-default-common-17.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.mlkit:image-labeling-common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/82d999b547729afc85eefdc1476f1618/transformed/image-labeling-common-18.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/05634b60c9767a08338e6c88ea766430/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3e85cc5f17fbae2be347bc07fd9aaf34/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/ed1c621d588e525bcf713bbb47e220fb/transformed/play-services-base-18.1.0/AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.play:integrity:1.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/dbd6d60c5f5178efaf688f41d0210125/transformed/integrity-1.1.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/80a53b4541719164fcc5bbd6c7653d53/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cd42949c47e8e39137d972c2346a3a53/transformed/firebase-common-20.4.2/AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.mlkit:vision-interfaces:16.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/63005f8440040a1b5a165320bf15489a/transformed/vision-interfaces-16.0.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3d5f6d64b7bbc0914fa18a19bb175b76/transformed/firebase-installations-interop-17.1.1/AndroidManifest.xml:15:1-19:12
 MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2065445be8bcb9483e06a1b090a57c7c/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/39f3c15478fccfe0011892031f3471b1/transformed/lifecycle-process-2.7.0-rc01/AndroidManifest.xml:17:1-35:12
@@ -116,9 +123,13 @@ MERGED from [androidx.core:core:1.12.0] /Users/mohametaminendiaye/.gradle/caches
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/67c764d43cd1350dccfadf0427cbf08c/transformed/lifecycle-runtime-2.7.0-rc01/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1e5e21903aa04e68d1f508e6c17947f8/transformed/lifecycle-viewmodel-compose-2.7.0-rc01/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f2a83855ad362159fb7fb8893170c506/transformed/lifecycle-runtime-ktx-2.7.0-rc01/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9b2e847397dad67006ebc178b2e91559/transformed/firebase-encoders-json-17.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/eec97a4e07a8d5f57223cd98a14dc664/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f8168b95d6d98f040fab2de42770539b/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-components:17.1.5] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9edb828a1822a9114836f5bbc34ff38b/transformed/firebase-components-17.1.5/AndroidManifest.xml:15:1-20:12
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/0b7c0d2311407f776f372f5ebe4a2d32/transformed/transport-api-2.2.1/AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/69073304afc08e2d923bbb0726980019/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/225d04346fd9e600d8eae002f5e15888/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/5308d4bba8e0550fe96f267ffe95265f/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
@@ -131,6 +142,7 @@ MERGED from [androidx.print:print:1.0.0] /Users/mohametaminendiaye/.gradle/cache
 MERGED from [androidx.exifinterface:exifinterface:1.3.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/e52805ba414e67f8605ccb4eda350188/transformed/exifinterface-1.3.6/AndroidManifest.xml:17:1-24:12
 MERGED from [io.grpc:grpc-android:1.52.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/86cbde5be2fd155e24bf526a5bac1cf1/transformed/grpc-android-1.52.1/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/35e86f3c27fc86ceb8c26cd6f0f71c11/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1b0ccb40fff12d5ce4da84f203b08656/transformed/image-1.0.0-beta1/AndroidManifest.xml:2:1-9:12
 	package
 		INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml
 	android:versionName
@@ -142,7 +154,7 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/moham
 	xmlns:android
 		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:4:5-66
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:5:5-66
 MERGED from [com.google.firebase:firebase-auth:22.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cc2176e9699a8ad6c862313b9857c80c/transformed/firebase-auth-22.3.0/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-auth:22.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cc2176e9699a8ad6c862313b9857c80c/transformed/firebase-auth-22.3.0/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-firestore:24.9.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/0718c3abb33ae47ad531cb251cec80ba/transformed/firebase-firestore-24.9.1/AndroidManifest.xml:11:5-67
@@ -157,33 +169,37 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/mohametaminen
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/730f90f44d093288ece00c9fd2fc0e39/transformed/recaptcha-18.1.2/AndroidManifest.xml:7:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:8:5-67
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:8:5-67
 MERGED from [com.google.android.gms:play-services-measurement:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/719d050e4437d56bb35d48d111cfa862/transformed/play-services-measurement-21.5.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/719d050e4437d56bb35d48d111cfa862/transformed/play-services-measurement-21.5.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1830309999f41753df88de322c09ae7a/transformed/play-services-measurement-impl-21.5.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1830309999f41753df88de322c09ae7a/transformed/play-services-measurement-impl-21.5.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/e7a7a02187a0ee9f5dac79fe7e557422/transformed/play-services-measurement-sdk-api-21.5.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/e7a7a02187a0ee9f5dac79fe7e557422/transformed/play-services-measurement-sdk-api-21.5.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:26:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:26:5-67
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:4:22-64
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.CAMERA
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:5:5-64
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:6:5-64
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:5:22-62
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:6:22-62
 uses-feature#android.hardware.camera.any
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:6:5-63
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:7:5-63
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:6:19-61
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:7:19-61
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:7:5-79
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:8:5-79
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:7:22-76
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:8:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:8:5-81
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:9:5-81
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:8:22-78
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:9:22-78
 application
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:11:5-44:19
-INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:11:5-44:19
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:12:5-50:19
+INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:12:5-50:19
 MERGED from [com.google.firebase:firebase-storage-ktx:20.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/91e6b3bb8a863c5d55e16d6af6f23a98/transformed/firebase-storage-ktx-20.3.0/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-storage-ktx:20.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/91e6b3bb8a863c5d55e16d6af6f23a98/transformed/firebase-storage-ktx-20.3.0/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-auth:22.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cc2176e9699a8ad6c862313b9857c80c/transformed/firebase-auth-22.3.0/AndroidManifest.xml:28:5-73:19
@@ -210,6 +226,14 @@ MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametami
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/55f9dfb0cf3572a26362c9844c4de221/transformed/play-services-location-21.0.1/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/55f9dfb0cf3572a26362c9844c4de221/transformed/play-services-location-21.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:8:5-24:19
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:8:5-24:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3e85cc5f17fbae2be347bc07fd9aaf34/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3e85cc5f17fbae2be347bc07fd9aaf34/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/ed1c621d588e525bcf713bbb47e220fb/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
@@ -246,66 +270,80 @@ MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/mohame
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/c8c3800a2e27fd08ea8f5fb1f7b48ed4/transformed/play-services-basement-18.1.0/AndroidManifest.xml:20:5-24:19
 MERGED from [androidx.core:core:1.12.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f4f9cc87f6487d21d8a4e0efd8361cb4/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.12.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f4f9cc87f6487d21d8a4e0efd8361cb4/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:25:5-39:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:25:5-39:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/225d04346fd9e600d8eae002f5e15888/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/225d04346fd9e600d8eae002f5e15888/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/5308d4bba8e0550fe96f267ffe95265f/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/5308d4bba8e0550fe96f267ffe95265f/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/8faf313c84fd9362b5536bcdb9736d30/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/8faf313c84fd9362b5536bcdb9736d30/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1b0ccb40fff12d5ce4da84f203b08656/transformed/image-1.0.0-beta1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1b0ccb40fff12d5ce4da84f203b08656/transformed/image-1.0.0-beta1/AndroidManifest.xml:7:5-20
 	android:extractNativeLibs
 		INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f4f9cc87f6487d21d8a4e0efd8361cb4/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:18:9-35
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:20:9-35
 	android:label
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:16:9-41
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:18:9-41
 	android:fullBackupContent
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:14:9-54
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:16:9-54
 	android:roundIcon
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:17:9-54
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:19:9-54
 	tools:targetApi
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:20:9-29
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:22:9-29
 	android:icon
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:15:9-43
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:17:9-43
 	android:allowBackup
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:12:9-35
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:19:9-50
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:21:9-50
 	android:dataExtractionRules
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:13:9-65
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:15:9-65
+	android:usesCleartextTraffic
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:13:9-44
 activity#com.example.locslspecies.MainActivity
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:21:9-31:20
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:23:9-33:20
 	android:label
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:24:13-45
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:26:13-45
 	android:exported
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:23:13-36
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:25:13-36
 	android:theme
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:25:13-54
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:27:13-54
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:22:13-41
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:24:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:26:13-30:29
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:28:13-32:29
 action#android.intent.action.MAIN
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:27:17-69
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:29:17-69
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:27:25-66
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:29:17-77
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:31:17-77
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:29:27-74
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:31:27-74
 meta-data#com.google.android.geo.API_KEY
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:41:9-43:70
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:43:9-45:70
 	android:value
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:43:13-68
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:45:13-68
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:42:13-58
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:44:13-58
+meta-data#com.google.mlkit.vision.DEPENDENCIES
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:46:9-48:42
+	android:value
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:48:13-39
+	android:name
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:47:13-64
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:37:13-39:57
+ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:39:13-41:57
 	android:resource
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:39:17-54
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:41:17-54
 	android:name
-		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:38:17-67
+		ADDED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml:40:17-67
 uses-sdk
 INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/mohametaminendiaye/projet/projet_platerforme_mobile/app/src/main/AndroidManifest.xml
@@ -406,8 +444,20 @@ MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametami
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/55f9dfb0cf3572a26362c9844c4de221/transformed/play-services-location-21.0.1/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/55f9dfb0cf3572a26362c9844c4de221/transformed/play-services-location-21.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3ff4a3e3288206641cb0e325bba4a030/transformed/play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3ff4a3e3288206641cb0e325bba4a030/transformed/play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:image-labeling-default-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/ff3e2129683cf46ebd8c138ad7f03a02/transformed/image-labeling-default-common-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:image-labeling-default-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/ff3e2129683cf46ebd8c138ad7f03a02/transformed/image-labeling-default-common-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:image-labeling-common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/82d999b547729afc85eefdc1476f1618/transformed/image-labeling-common-18.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:image-labeling-common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/82d999b547729afc85eefdc1476f1618/transformed/image-labeling-common-18.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/05634b60c9767a08338e6c88ea766430/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/05634b60c9767a08338e6c88ea766430/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3e85cc5f17fbae2be347bc07fd9aaf34/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
@@ -420,6 +470,8 @@ MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/mohametami
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/80a53b4541719164fcc5bbd6c7653d53/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cd42949c47e8e39137d972c2346a3a53/transformed/firebase-common-20.4.2/AndroidManifest.xml:19:5-44
 MERGED from [com.google.firebase:firebase-common:20.4.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cd42949c47e8e39137d972c2346a3a53/transformed/firebase-common-20.4.2/AndroidManifest.xml:19:5-44
+MERGED from [com.google.mlkit:vision-interfaces:16.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/63005f8440040a1b5a165320bf15489a/transformed/vision-interfaces-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-interfaces:16.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/63005f8440040a1b5a165320bf15489a/transformed/vision-interfaces-16.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3d5f6d64b7bbc0914fa18a19bb175b76/transformed/firebase-installations-interop-17.1.1/AndroidManifest.xml:17:5-44
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/3d5f6d64b7bbc0914fa18a19bb175b76/transformed/firebase-installations-interop-17.1.1/AndroidManifest.xml:17:5-44
 MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2065445be8bcb9483e06a1b090a57c7c/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
@@ -512,12 +564,20 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-rc01] /Users/m
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1e5e21903aa04e68d1f508e6c17947f8/transformed/lifecycle-viewmodel-compose-2.7.0-rc01/AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f2a83855ad362159fb7fb8893170c506/transformed/lifecycle-runtime-ktx-2.7.0-rc01/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-rc01] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f2a83855ad362159fb7fb8893170c506/transformed/lifecycle-runtime-ktx-2.7.0-rc01/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9b2e847397dad67006ebc178b2e91559/transformed/firebase-encoders-json-17.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9b2e847397dad67006ebc178b2e91559/transformed/firebase-encoders-json-17.1.0/AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/eec97a4e07a8d5f57223cd98a14dc664/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/eec97a4e07a8d5f57223cd98a14dc664/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f8168b95d6d98f040fab2de42770539b/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f8168b95d6d98f040fab2de42770539b/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-components:17.1.5] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9edb828a1822a9114836f5bbc34ff38b/transformed/firebase-components-17.1.5/AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-components:17.1.5] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9edb828a1822a9114836f5bbc34ff38b/transformed/firebase-components-17.1.5/AndroidManifest.xml:18:5-44
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/0b7c0d2311407f776f372f5ebe4a2d32/transformed/transport-api-2.2.1/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/0b7c0d2311407f776f372f5ebe4a2d32/transformed/transport-api-2.2.1/AndroidManifest.xml:18:5-20:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/69073304afc08e2d923bbb0726980019/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/69073304afc08e2d923bbb0726980019/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/225d04346fd9e600d8eae002f5e15888/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
@@ -542,6 +602,8 @@ MERGED from [io.grpc:grpc-android:1.52.1] /Users/mohametaminendiaye/.gradle/cach
 MERGED from [io.grpc:grpc-android:1.52.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/86cbde5be2fd155e24bf526a5bac1cf1/transformed/grpc-android-1.52.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/35e86f3c27fc86ceb8c26cd6f0f71c11/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/35e86f3c27fc86ceb8c26cd6f0f71c11/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1b0ccb40fff12d5ce4da84f203b08656/transformed/image-1.0.0-beta1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1b0ccb40fff12d5ce4da84f203b08656/transformed/image-1.0.0-beta1/AndroidManifest.xml:5:5-44
 	tools:overrideLibrary
 		ADDED from [com.google.firebase:firebase-auth:22.3.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/cc2176e9699a8ad6c862313b9857c80c/transformed/firebase-auth-22.3.0/AndroidManifest.xml:23:9-61
 	android:targetSdkVersion
@@ -594,12 +656,18 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/mohametaminen
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/730f90f44d093288ece00c9fd2fc0e39/transformed/recaptcha-18.1.2/AndroidManifest.xml:8:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:7:5-79
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-measurement:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/719d050e4437d56bb35d48d111cfa862/transformed/play-services-measurement-21.5.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/719d050e4437d56bb35d48d111cfa862/transformed/play-services-measurement-21.5.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1830309999f41753df88de322c09ae7a/transformed/play-services-measurement-impl-21.5.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/1830309999f41753df88de322c09ae7a/transformed/play-services-measurement-impl-21.5.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/e7a7a02187a0ee9f5dac79fe7e557422/transformed/play-services-measurement-sdk-api-21.5.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/e7a7a02187a0ee9f5dac79fe7e557422/transformed/play-services-measurement-sdk-api-21.5.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:22:5-79
 MERGED from [io.grpc:grpc-android:1.52.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/86cbde5be2fd155e24bf526a5bac1cf1/transformed/grpc-android-1.52.1/AndroidManifest.xml:9:5-79
 MERGED from [io.grpc:grpc-android:1.52.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/86cbde5be2fd155e24bf526a5bac1cf1/transformed/grpc-android-1.52.1/AndroidManifest.xml:9:5-79
 	android:name
@@ -786,6 +854,56 @@ ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametamin
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:41:13-37
 	android:name
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/6dffd12e8f7c2c6b792fa270dcc5dc0f/transformed/play-services-maps-18.2.0/AndroidManifest.xml:40:13-50
+service#com.google.mlkit.common.internal.MlKitComponentDiscoveryService
+ADDED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:15:9-23:19
+MERGED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:15:9-23:19
+	android:exported
+		ADDED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:10:13-37
+	tools:targetApi
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:19:13-32
+	android:directBootAware
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:17:13-43
+	android:name
+		ADDED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:9:13-91
+meta-data#com.google.firebase.components:com.google.mlkit.vision.label.defaults.internal.BundledLabelRegistrar
+ADDED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:11:13-13:85
+	android:value
+		ADDED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:13:17-82
+	android:name
+		ADDED from [com.google.mlkit:image-labeling:17.0.7] /Users/mohametaminendiaye/.gradle/caches/transforms-3/4a97cadd3de9b3d1d92bdbcd16646b70/transformed/image-labeling-17.0.7/AndroidManifest.xml:12:17-132
+meta-data#com.google.firebase.components:com.google.mlkit.vision.vkp.VkpRegistrar
+ADDED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:14:13-16:85
+	android:value
+		ADDED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:16:17-82
+	android:name
+		ADDED from [com.google.mlkit:vision-internal-vkp:18.2.2] /Users/mohametaminendiaye/.gradle/caches/transforms-3/2934ca5cdfdbdc9bafef60ee24345f4b/transformed/vision-internal-vkp-18.2.2/AndroidManifest.xml:15:17-103
+meta-data#com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar
+ADDED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.mlkit:vision-common:17.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/38206f2aabd8266230ba70a11cd622fc/transformed/vision-common-17.0.0/AndroidManifest.xml:13:17-124
+provider#com.google.mlkit.common.internal.MlKitInitProvider
+ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:9:9-13:38
+	android:authorities
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:11:13-69
+	android:exported
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:12:13-37
+	android:initOrder
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:13:13-35
+	android:name
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:10:13-78
+meta-data#com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar
+ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.mlkit:common:18.0.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/bd783c396945194674125efbad203c7e/transformed/common-18.0.0/AndroidManifest.xml:21:17-120
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/ed1c621d588e525bcf713bbb47e220fb/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
 	android:exported
@@ -904,6 +1022,34 @@ uses-permission#com.example.locslspecies.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSIO
 ADDED from [androidx.core:core:1.12.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f4f9cc87f6487d21d8a4e0efd8361cb4/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.12.0] /Users/mohametaminendiaye/.gradle/caches/transforms-3/f4f9cc87f6487d21d8a4e0efd8361cb4/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+service#com.google.android.datatransport.runtime.backends.TransportBackendDiscovery
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:36:9-38:40
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:36:9-38:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+meta-data#backend:com.google.android.datatransport.cct.CctBackendFactory
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+	android:value
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mohametaminendiaye/.gradle/caches/transforms-3/20d431fa0051c6b4b7194b18fc5c61df/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+service#com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
+	android:permission
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
+receiver#com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/mohametaminendiaye/.gradle/caches/transforms-3/9914fbb548c9c27b1e82c9760e63ed66/transformed/transport-runtime-2.2.6/AndroidManifest.xml:33:13-132
 meta-data#androidx.profileinstaller.ProfileInstallerInitializer
 ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/mohametaminendiaye/.gradle/caches/transforms-3/5308d4bba8e0550fe96f267ffe95265f/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
 	android:value

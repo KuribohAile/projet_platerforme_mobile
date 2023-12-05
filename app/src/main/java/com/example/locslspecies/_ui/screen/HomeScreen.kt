@@ -42,22 +42,26 @@ fun HomeScreen(navController: NavHostController) {
     val context = LocalContext.current
     val viewModel: AuthViewModel = viewModel()
     val usersPictures by viewModel.pictures.observeAsState(emptyList())
-    Log.d("MYTAGG", "NavGraph:  ${usersPictures.getOrNull(0)?.postedBy?.surname}")
+    val users by viewModel.users.observeAsState(emptyList())
+    val userId by viewModel.userId.observeAsState()
+   // Log.d("MYTAGG", "NavGraph:  ${usersPictures.getOrNull(0)?.postedBy?.surname}")
     LazyColumn {
         items(usersPictures) { picture ->
-            HomeScreen(
-                imageUrl = picture.url,
-                postedBy = picture.postedBy.surname,
-                date = picture.postedAt.toDate(),
-                scientificName = picture.scientificName,
-                commonName = picture.commonName,
-                family = picture.family,
-                validedBy = picture.validation,
-                context = context,
-                navController = navController,
-                position = usersPictures.indexOf(picture)
+            users.find { user -> user.id == picture.idUser }?.name?.let {
+                HomeScreen(
+                    imageUrl = picture.url,
+                    postedBy = it,
+                    date = picture.postedAt.toDate(),
+                    scientificName = picture.scientificName,
+                    commonName = picture.commonName,
+                    family = picture.family,
+                    validedBy = picture.validation,
+                    context = context,
+                    navController = navController,
+                    idPicture = picture.id,
 
-            )
+                    )
+            }
             Divider(
                 color = Color(0xFF3B808B),
                 thickness = 2.dp,
@@ -81,7 +85,7 @@ fun HomeScreen(
     family: String,
     context: Context,
     navController: NavHostController,
-    position: Int
+    idPicture: String,
 ) {
     Column(
         modifier = Modifier
@@ -127,7 +131,10 @@ fun HomeScreen(
                 Column(horizontalAlignment = Alignment.End) {
                     Button(onClick = {
 
-                        navController.navigate("detail/$position")
+                        navController.navigate("detail/$idPicture") {
+                            popUpTo("detail/$idPicture") { inclusive = true }
+                        }
+
                     }) {
                         Text("DETAILS")
                     }

@@ -3,8 +3,6 @@ package com.example.locslspecies._ui.navigation
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.example.locslspecies.model.UserPictures
-import com.example.locslspecies.model.UsersPictures
 
 
 /**
@@ -14,11 +12,10 @@ import com.example.locslspecies.model.UsersPictures
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun NavHost(
-    navController: NavHostController,
-    userPictures: List<UserPictures>,
+    navController: NavHostController
 
 ) {
 
-    NavGraph(navController, userPictures)
+    NavGraph(navController)
 
 }

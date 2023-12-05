@@ -7,6 +7,7 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable baseline_send_24
 drawable camera_24
 drawable gallery_24
 drawable google_sign_in

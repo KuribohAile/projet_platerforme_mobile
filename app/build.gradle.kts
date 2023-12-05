@@ -82,5 +82,11 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-rc01")
     implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
     implementation ("com.google.firebase:firebase-storage-ktx")
+    implementation ("com.google.mlkit:image-labeling:17.0.7")
+    // Retrofit for network requests
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    // OkHttp for logging network requests
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
 }

@@ -134,6 +134,7 @@ dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
 drawable abc_vector_test
+drawable baseline_send_24
 drawable camera_24
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
