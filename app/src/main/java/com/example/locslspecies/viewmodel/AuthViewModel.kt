@@ -129,7 +129,7 @@ class AuthViewModel : ViewModel() {
 
         db.collection("Pictures").add(picture)
             .addOnSuccessListener {
-                fetchImages()
+
             }
             .addOnFailureListener { e ->
 
@@ -169,7 +169,7 @@ class AuthViewModel : ViewModel() {
                         picturesList.add(picture!!)
 
                     }
-                    pictures.postValue(picturesList)
+                    pictures.value = picturesList
                 }
 
             }
@@ -264,6 +264,70 @@ class AuthViewModel : ViewModel() {
         }, onFailure = {
     })
 }
+
+    fun PictureRecognitionBasedOnComments(){
+
+        db.collection("Pictures")
+            .get()
+            .addOnSuccessListener { pictures ->
+                pictures.forEach { pictureDocument ->
+                    val picture = pictureDocument.toObject(Pictures::class.java)
+                    val pictureId = picture.id
+
+                    // Step 2: Fetch comments for each picture
+                    db.collection("Comments")
+                        .whereEqualTo("idPicture", pictureId)
+                        .get()
+                        .addOnSuccessListener { comments ->
+                            // Step 3: Analyze comments for common words
+                            val wordFrequency = HashMap<String, Int>()
+                            comments.forEach { commentDocument ->
+                                val comment = commentDocument.toObject(Comments::class.java)
+                                comment.text.split("\\s+".toRegex()).forEach { word ->
+
+                                    val cleanWord = word.lowercase().filter { it.isLetter() }
+
+                                    wordFrequency[cleanWord] = wordFrequency.getOrDefault(cleanWord, 0) + 1
+
+                                }
+                            }
+
+                            // Find the most common word that appears at least 3 times
+                            val commonWord = wordFrequency.entries.find { it.value >= 3 }?.key
+
+
+                            // Step 4: Update `commonName` if a common word is found
+                            if (commonWord != null) {
+                                Log.d("TAGJ", "PictureRecognitionBasedOnComments: ${ commonWord}")
+                                db.collection("Pictures").whereEqualTo("id", pictureId).get()
+                                    .addOnSuccessListener {documents ->
+
+                                        for (document in documents) {
+                                            // Update the field in each document
+                                            document.getReference().update("commonName", commonWord)
+                                                .addOnSuccessListener {
+
+                                                }
+                                                .addOnFailureListener { e ->
+                                                }
+                                        }
+
+                                    }
+                                    .addOnFailureListener { e ->
+
+                                    }
+                            }
+                        }
+                        .addOnFailureListener { e ->
+
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+
+            }
+
+    }
 
 
     // fonction qui permet d'enregistrer le like de l'utilisateur dans la base de données firestore pas encore fini

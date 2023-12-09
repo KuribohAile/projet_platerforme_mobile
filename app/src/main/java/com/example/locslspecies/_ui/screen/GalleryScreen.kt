@@ -14,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -35,6 +36,15 @@ import com.example.locslspecies.viewmodel.AuthViewModel
 fun GalleryScreen(navBackStackEntry: NavBackStackEntry, navController: NavHostController) {
     val viewModel: AuthViewModel = viewModel()
     val pictures by viewModel.pictures.observeAsState(emptyList())
+    val userId by viewModel.userId.observeAsState()
+    val filteredPictures = pictures.filter { it.idUser == userId }
+
+    DisposableEffect(Unit) {
+        viewModel.fetchImages()
+        onDispose {
+
+        }
+    }
 
     Column {
         Row(
@@ -55,11 +65,11 @@ fun GalleryScreen(navBackStackEntry: NavBackStackEntry, navController: NavHostCo
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = 128.dp)
             ) {
-                items(pictures) { picture ->
-                    PictureCard(picture = picture) {
-                        // Action on card click - navigate to a detail screen
-                        val position = pictures.indexOf(picture)
-                        navController.navigate("detail/$position")
+                items(filteredPictures) { picture ->
+                        PictureCard(picture = picture) {
+                            // Action on card click - navigate to a detail screen
+                            val pictureId = picture.id
+                            navController.navigate("detail/$pictureId")
                     }
                 }
             }

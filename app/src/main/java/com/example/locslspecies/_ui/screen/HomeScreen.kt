@@ -19,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -35,6 +36,7 @@ import com.example.locslspecies.viewmodel.AuthViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.log
 
 // Les données de la liste de plantes de l'utilisateur
 @Composable
@@ -44,11 +46,23 @@ fun HomeScreen(navController: NavHostController) {
     val usersPictures by viewModel.pictures.observeAsState(emptyList())
     val users by viewModel.users.observeAsState(emptyList())
     val userId by viewModel.userId.observeAsState()
-   // Log.d("MYTAGG", "NavGraph:  ${usersPictures.getOrNull(0)?.postedBy?.surname}")
+
+
+
+    DisposableEffect(Unit) {
+        viewModel.PictureRecognitionBasedOnComments()
+        viewModel.fetchImages()
+        viewModel.fetchUsers()
+
+        onDispose {
+
+        }
+    }
+
     LazyColumn {
         items(usersPictures) { picture ->
             users.find { user -> user.id == picture.idUser }?.name?.let {
-                HomeScreen(
+                PictureListItem(
                     imageUrl = picture.url,
                     postedBy = it,
                     date = picture.postedAt.toDate(),
@@ -74,7 +88,7 @@ fun HomeScreen(navController: NavHostController) {
 
 // Les données d'une plante de la liste de plantes de l'utilisateur
 @Composable
-fun HomeScreen(
+fun PictureListItem(
 
     imageUrl: String,
     postedBy: String,
@@ -87,6 +101,7 @@ fun HomeScreen(
     navController: NavHostController,
     idPicture: String,
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth()

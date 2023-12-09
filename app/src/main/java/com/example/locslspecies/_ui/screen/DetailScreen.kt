@@ -139,10 +139,6 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                         val idUser = comments.find {comment  -> comment.idPicture == idPicture }?.idUser
                         if (comment.idPicture == idPicture){
 
-
-
-
-
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -178,10 +174,6 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                                     }
                                 }
                             }
-
-
-
-
 
                         }
 
