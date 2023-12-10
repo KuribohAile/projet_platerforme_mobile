@@ -173,9 +173,9 @@ fun CameraScreen(navBackStackEntry: NavBackStackEntry, navController: NavHostCon
         }
 
         // Effet lancé pour insérer l'image capturée dans le ViewModel.
-
+        LaunchedEffect(Unit) {
             viewModel.insertUserPicture(capturedImageUri)
-
+        }
     }
 }
 
