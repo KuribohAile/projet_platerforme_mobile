@@ -29,8 +29,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -52,7 +50,7 @@ import androidx.navigation.NavBackStackEntry
 import coil.compose.rememberAsyncImagePainter
 import com.example.locslspecies.R
 import com.example.locslspecies.model.Comments
-import com.example.locslspecies.viewmodel.AuthViewModel
+import com.example.locslspecies.controller.AuthViewModel
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -65,6 +63,7 @@ import java.util.UUID
 @Composable
 fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
 
+    // Initialisation du ViewModel et récupération des données passées.
     val viewModel: AuthViewModel = viewModel()
     val idPicture = navBackStackEntry.arguments?.getString("idPicture") ?: ""
     val pictures by viewModel.pictures.observeAsState(emptyList())
@@ -74,17 +73,18 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
     val comments by viewModel.comments.observeAsState(emptyList())
     val scrollState = rememberLazyListState()
     val focusManager = LocalFocusManager.current
-    val documentReference by viewModel.userDocumentRef.observeAsState()
-    val picture = pictures.find { picture -> picture.id == idPicture }
-    val userName = users.find { user -> user.id == picture?.idUser }?.name
+    // Trouver l'image correspondante par son ID.
+    val picture = pictures.find { it.id == idPicture }
+    // Trouver le nom d'utilisateur correspondant à l'ID de l'utilisateur.
+    val userName = users.find { it.id == picture?.idUser }?.name
 
-
+    // Disposition en colonne pour l'écran des détails.
     Column(
         modifier = Modifier
             .fillMaxSize()
             .border(1.dp, Color.LightGray, RoundedCornerShape(4.dp))
     ) {
-
+        // Affichage de l'image de la plante.
         Image(
             painter = rememberAsyncImagePainter(picture?.url),
             contentDescription = null,
@@ -93,14 +93,16 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                 .height(180.dp)
                 .fillMaxWidth()
         )
+        // Informations sur la plante.
         Column(modifier = Modifier.padding(4.dp)) {
             Column(modifier = Modifier.padding(1.dp)) {
+                // Informations sur l'utilisateur qui a posté et la date de publication.
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Poste par: ${userName.toString()}",
+                        text = "Posté par: ${userName.toString()}",
                         fontSize = 12.sp,
                         color = Color.Gray,
                         modifier = Modifier.weight(1f)
@@ -114,91 +116,109 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                     )
                 }
             }
-            //Spacer(modifier = Modifier.height(8.dp))
+            // Nom scientifique de la plante.
             Text(
                 text = "Nom: ${picture?.scientificName}",
                 fontSize = 14.sp,
                 color = Color.Black
             )
-            Text(
-                text = "Nom scientifique: ${picture?.commonName}",
-                fontSize = 14.sp,
-                color = Color.Black
-            )
-            Text(text = "Famille: ${picture?.family}", fontSize = 14.sp, color = Color.Black)
         }
-            // Spacer(modifier = Modifier.weight(1f))
-            Divider(
-                color = Color(0xFF3B808B),
-                thickness = 2.dp,
-            )
+        // Séparateur visuel.
+        Divider(
+            color = Color(0xFF3B808B),
+            thickness = 2.dp,
+        )
 
-            LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
-                    items(comments.size) { index ->
-                        val comment = comments[index]
-                        val idUser = comments.find {comment  -> comment.idPicture == idPicture }?.idUser
-                        if (comment.idPicture == idPicture){
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Image(
-                                    painter = rememberAsyncImagePainter(users.find {user  -> user.id == comment.idUser }?.imageProfileUrl),
-                                    contentDescription = "Profile picture",
-                                    modifier = Modifier
-                                        .size(40.dp)
-                                        .clip(RoundedCornerShape(50)) // Circular image
+        // Liste des commentaires associés à l'image de la plante.
+        LazyColumn(state = scrollState, modifier = Modifier.weight(8f)) {
+            items(comments.size) { index ->
+                val comment = comments[index]
+                if (comment.idPicture == idPicture){
+                    // Disposition pour chaque commentaire.
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        // Image de profil de l'utilisateur qui a fait le commentaire.
+                        Image(
+                            painter = rememberAsyncImagePainter(users.find { it.id == comment.idUser }?.imageProfileUrl),
+                            contentDescription = "Photo de profil",
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(RoundedCornerShape(50)) // Image circulaire
+                        )
+                        // Carte élevée contenant le commentaire.
+                        ElevatedCard(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 6.dp),
+                            shape = RoundedCornerShape(8.dp),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 0.dp
+                            ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                            )
+                        ) {
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Column {
+                                // Nom de l'utilisateur ayant écrit le commentaire.
+                                Text(
+                                    text = users.find { it.id == comment.idUser }?.name.toString(),
+                                    fontWeight = FontWeight.Bold
                                 )
-                                ElevatedCard(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(start = 6.dp),
-                                    shape = RoundedCornerShape(8.dp),
-                                    elevation = CardDefaults.cardElevation(
-                                        defaultElevation = 0.dp
-                                    ),
-                                    colors = CardDefaults.cardColors(
-                                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                                    )
-                                ) {
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Column {
-                                        Text(
-                                            text = users.find {user  -> user.id == comment.idUser }?.name.toString(),
-                                            fontWeight = FontWeight.Bold
-                                        )
-                                        Text(text = comment.text)
-                                    }
-                                }
+                                // Texte du commentaire.
+                                Text(text = comment.text)
                             }
-
                         }
-
                     }
                 }
+            }
+        }
 
-            Spacer(modifier = Modifier.weight(0.5f))
+        // Espaceur pour aligner le champ de texte de commentaire.
+        Spacer(modifier = Modifier.weight(0.5f))
 
-            TextField(
-                value = commentText,
-                onValueChange = { commentText = it },
-                placeholder = { Text("Ajouter un commentaire...") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                //.focusRequester(focusRequester),
-                shape = RoundedCornerShape(16.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.Black,
-                    focusedIndicatorColor = Color.Gray,
-                    unfocusedIndicatorColor = Color.Gray
-                ),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(onDone = {
+        // Champ de texte pour écrire un commentaire.
+        TextField(
+            value = commentText,
+            onValueChange = { commentText = it },
+            placeholder = { Text("Ajouter un commentaire...") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            shape = RoundedCornerShape(16.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.Black,
+                focusedIndicatorColor = Color.Gray,
+                unfocusedIndicatorColor = Color.Gray
+            ),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(onDone = {
+                // Actions à effectuer lorsque l'utilisateur valide son commentaire.
+                if (commentText.isNotBlank()) {
+                    // Création et envoi du commentaire.
+                    val comment = Comments(
+                        idUser = idUser!!,
+                        idPicture = idPicture,
+                        id = UUID.randomUUID().toString(),
+                        text = commentText,
+                        commentedAt = Timestamp.now(),
+                    )
+                    viewModel.addComment(comment, idPicture)
+                    viewModel.fetchComments()
+                    commentText = ""
+                    focusManager.clearFocus()
+                }
+            }),
+            // Icône pour envoyer le commentaire.
+            trailingIcon = {
+                IconButton(onClick = {
+                    // Actions à effectuer lorsque l'icône d'envoi est cliquée.
                     if (commentText.isNotBlank()) {
+                        focusManager.clearFocus()
                         val comment = Comments(
                             idUser = idUser!!,
                             idPicture = idPicture,
@@ -209,37 +229,15 @@ fun DetailScreen(navBackStackEntry: NavBackStackEntry) {
                         viewModel.addComment(comment, idPicture)
                         viewModel.fetchComments()
                         commentText = ""
-                        focusManager.clearFocus()
                     }
-                }),
-                trailingIcon = {
-                    IconButton(onClick = {
-                        if (commentText.isNotBlank()) {
-                            // comments = comments + Comment(commentText, user)
-
-                            focusManager.clearFocus()
-                            val comment = Comments(
-                                idUser = idUser!!,
-                                idPicture = idPicture,
-                                id = UUID.randomUUID().toString(),
-                                text = commentText,
-                                commentedAt = Timestamp.now(),
-                            )
-                            viewModel.addComment(comment, idPicture)
-                            viewModel.fetchComments()
-                            commentText = ""
-                        }
-                    }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.baseline_send_24), // Replace with your send icon resource
-                            contentDescription = "envoi",
-                            modifier = Modifier.size(24.dp),
-
-                            )
-                    }
+                }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_send_24), // Remplacer par la ressource de votre icône d'envoi
+                        contentDescription = "envoi",
+                        modifier = Modifier.size(24.dp),
+                    )
                 }
-            )
-
-        }
-
+            }
+        )
+    }
 }

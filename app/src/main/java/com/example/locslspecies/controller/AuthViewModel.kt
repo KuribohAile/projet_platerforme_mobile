@@ -1,13 +1,10 @@
-package com.example.locslspecies.viewmodel
+package com.example.locslspecies.controller
 
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.locslspecies.ApiService
-import com.example.locslspecies.model.ApiResponse
 import com.example.locslspecies.model.Comments
 import com.example.locslspecies.model.Coordinate
 import com.example.locslspecies.model.Pictures
@@ -21,33 +18,41 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import java.util.Date
 import java.util.UUID
 
-
+// Classe ViewModel pour gérer l'authentification et les interactions avec la base de données Firestore.
 class AuthViewModel : ViewModel() {
+    // État de l'interface utilisateur pour l'authentification.
     val uiState = MutableStateFlow<AuthUiState>(AuthUiState.Empty)
+
+    // Référence à la base de données Firestore.
     val db = Firebase.firestore
+
+    // État pour savoir si l'utilisateur est connecté.
     private val _isLoggedIn = MutableLiveData<Boolean>(false)
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
-    val  userId = MutableLiveData<String>()
+
+    // ID de l'utilisateur actuellement connecté.
+    val userId = MutableLiveData<String>()
+
+    // Référence au stockage Firebase pour les images.
     private val storageRef = Firebase.storage.reference
+
+    // Données des images, utilisateurs et commentaires.
     val pictures = MutableLiveData<List<Pictures>>()
     val users = MutableLiveData<List<_User>>()
     val userDocumentRef = MutableLiveData<DocumentReference>()
     val comments = MutableLiveData<List<Comments>>()
-    val apiService = ApiService.create()
-    var response = MutableLiveData<ApiResponse>()
 
 
+    // Écouteur de l'état d'authentification Firebase.
     private val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         _isLoggedIn.value = firebaseAuth.currentUser != null
          userId.value = firebaseAuth.currentUser?.uid ?: ""
-
+// Si l'utilisateur est connecté, récupérer les données nécessaires.
         if(userId.value !== ""){
          userDocumentRef.value = db.collection("Users").document(userId.value!!)
-         fetchUser()
          fetchImages()
          fetchComments()
          fetchUsers()
@@ -56,15 +61,11 @@ class AuthViewModel : ViewModel() {
 
     }
 
-// inititialisation de l'authentification listener
-    init {
-
-        Firebase.auth.addAuthStateListener(authStateListener)
-
-}
+    // Initialisation de l'écouteur d'authentification.
+    init { Firebase.auth.addAuthStateListener(authStateListener) }
 
 
-  // fonction qui permet de s'inscrire
+    // Fonction pour l'inscription d'un nouvel utilisateur.
      fun register(user: _User) {
 
         uiState.value = AuthUiState.Loading
@@ -85,7 +86,7 @@ class AuthViewModel : ViewModel() {
 
     }
 
-    // fonction qui permet de se connecter
+    // Fonction pour la connexion d'un utilisateur.
     fun login(email: String, password: String) {
 
         uiState.value = AuthUiState.Loading // Indicate loading state
@@ -102,17 +103,13 @@ class AuthViewModel : ViewModel() {
 
     }
 
-    // fonction qui permet de se deconnecter
+    // Fonction pour la déconnexion d'un utilisateur.
     fun logout() {
         Firebase.auth.signOut()
     }
 
-    // fonction qui permet de reinitialiser le mot de passe
-    fun resetPassword(email: String) {
-        Firebase.auth.sendPasswordResetEmail(email)
-    }
 
-    // fonction qui permet d'enregistrer les informations de l'utilisateur dans la base de données firestore
+    // Fonction pour enregistrer les informations de l'utilisateur dans Firestore.
     fun registerUserInfos(user: _User){
         // Add a new document with a generated ID
         user.id = userId.value!!
@@ -125,17 +122,34 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun insertUserPicture(picture: Pictures){
+    // Fonction pour insérer une image capturée par l'utilisateur.
+    fun insertUserPicture(capturedImageUri: Uri){
+        uploadImage(capturedImageUri, onSuccess = {
 
-        db.collection("Pictures").add(picture)
-            .addOnSuccessListener {
+            val picture = Pictures(
+                id = UUID.randomUUID().toString(),
+                idUser = userId.value!!.toString(),
+                postedAt = Timestamp(Date()),
+                url = it.toString(),
+                scientificName = "Inconnu",
+                commonName = "Inconnu",
+                family = "Inconnu",
+                coordinate = listOf(Coordinate.latitude, Coordinate.longitude),
+                validation = 0,
+            )
+            db.collection("Pictures").add(picture)
+                .addOnSuccessListener {
 
-            }
-            .addOnFailureListener { e ->
+                }
+                .addOnFailureListener { e ->
 
-            }
+                }
+
+        }, onFailure = {})
+
     }
 
+    // Fonction pour télécharger une image sur Firebase Storage.
     fun uploadImage(fileUri: Uri, onSuccess: (Uri) -> Unit, onFailure: (Exception) -> Unit) {
         val imageRef = storageRef.child("images/${fileUri.lastPathSegment}")
         val uploadTask = imageRef.putFile(fileUri)
@@ -157,6 +171,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    // Fonction pour récupérer les images depuis Firestore.
     fun fetchImages() {
         db.collection("Pictures").orderBy("postedAt", Query.Direction.DESCENDING).get()
             .addOnCompleteListener { task ->
@@ -175,21 +190,7 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    private fun fetchUser() {
-        db.collection("Users").document(userId.value!!).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    val user = document.toObject(_User::class.java)
-
-                } else {
-
-                }
-            }
-            .addOnFailureListener { exception ->
-            }
-    }
-
-
+    // Fonction pour récupérer les utilisateurs depuis Firestore.
     fun fetchUsers() {
         db.collection("Users").get()
             .addOnCompleteListener { task ->
@@ -210,7 +211,7 @@ class AuthViewModel : ViewModel() {
 
 
 
-    // fonction qui permet d'enregistrer le commentaire de l'utilisateur dans la base de données firestore pas encore fini
+    // Fonction pour ajouter un commentaire dans Firestore.
     fun addComment(comment: Comments, position: String) {
 
         db.collection("Comments").add(comment)
@@ -222,7 +223,7 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-
+    // Fonction pour récupérer les commentaires depuis Firestore.
     fun fetchComments() {
         db.collection("Comments").get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -241,30 +242,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun pictureRecognition(capturedImageUri: Uri) {
-        uploadImage(capturedImageUri, onSuccess = {
-            viewModelScope.launch {
-               response.value = apiService.getImageInfos(it.toString())
-                Log.d("RESPP", "pictureRecognitions: + $it" + response.value!!.Name)
-                val picture = Pictures(
-                    id = UUID.randomUUID().toString(),
-                    idUser = userId.value!!.toString(),
-                    postedAt = Timestamp(Date()),
-                    url = it.toString(),
-                    scientificName = response.value!!.Scientific_name,
-                    commonName = response.value!!.Name,
-                    family = response.value!!.Family,
-                    coordinate = listOf(Coordinate.latitude, Coordinate.longitude),
-                    validation = 2,
-                )
-                insertUserPicture(picture = picture)
-
-            }
-
-        }, onFailure = {
-    })
-}
-
+    // Fonction pour analyser les commentaires et reconnaître les espèces de plantes en se basant sur les commentaires.
     fun PictureRecognitionBasedOnComments(){
 
         db.collection("Pictures")
@@ -274,12 +252,12 @@ class AuthViewModel : ViewModel() {
                     val picture = pictureDocument.toObject(Pictures::class.java)
                     val pictureId = picture.id
 
-                    // Step 2: Fetch comments for each picture
+
                     db.collection("Comments")
                         .whereEqualTo("idPicture", pictureId)
                         .get()
                         .addOnSuccessListener { comments ->
-                            // Step 3: Analyze comments for common words
+
                             val wordFrequency = HashMap<String, Int>()
                             comments.forEach { commentDocument ->
                                 val comment = commentDocument.toObject(Comments::class.java)
@@ -292,18 +270,18 @@ class AuthViewModel : ViewModel() {
                                 }
                             }
 
-                            // Find the most common word that appears at least 3 times
+
                             val commonWord = wordFrequency.entries.find { it.value >= 3 }?.key
 
 
-                            // Step 4: Update `commonName` if a common word is found
+
                             if (commonWord != null) {
                                 Log.d("TAGJ", "PictureRecognitionBasedOnComments: ${ commonWord}")
                                 db.collection("Pictures").whereEqualTo("id", pictureId).get()
                                     .addOnSuccessListener {documents ->
 
                                         for (document in documents) {
-                                            // Update the field in each document
+
                                             document.getReference().update("commonName", commonWord)
                                                 .addOnSuccessListener {
 
@@ -329,12 +307,38 @@ class AuthViewModel : ViewModel() {
 
     }
 
+    // Fonction pour incrémenter le champ de validation d'une image.
+    fun incrementValidationField(pictureFieldId: String) {
 
-    // fonction qui permet d'enregistrer le like de l'utilisateur dans la base de données firestore pas encore fini
-    fun likeImage(imageId: String) {
-        val userId = Firebase.auth.currentUser?.uid ?: return
-        // Firestore transaction to increment like count and add userId to likedBy
+        db.collection("Pictures")
+            .whereEqualTo("id", pictureFieldId)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    Log.d("Firestore", "No document found with field ID: $pictureFieldId")
+                    return@addOnSuccessListener
+                }
+
+
+                val documentRef = documents.documents.first().reference
+
+
+                db.runTransaction { transaction ->
+                    val snapshot = transaction.get(documentRef)
+                    val currentValidation = snapshot.getLong("validation") ?: 0
+                    transaction.update(documentRef, "validation", currentValidation + 1)
+                    fetchImages()
+                }.addOnSuccessListener {
+
+                }.addOnFailureListener { e ->
+
+                }
+            }
+            .addOnFailureListener { e ->
+
+            }
     }
+
 
     // fonction qui permet de supprimer le listener
     override fun onCleared() {

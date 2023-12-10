@@ -18,7 +18,7 @@ import com.example.locslspecies._ui.screen.GalleryScreen
 import com.example.locslspecies._ui.screen.ProfileScreen
 import com.example.locslspecies._ui.screen.SignInScreen
 import com.example.locslspecies._ui.screen.SignUpScreen
-import com.example.locslspecies.viewmodel.AuthViewModel
+import com.example.locslspecies.controller.AuthViewModel
 
 // Ce NavHost gère la navigation dans l'application. Il définit les routes et les écrans correspondants.
 // Les utilisateurs non connectés sont redirigés vers l'écran de connexion.
@@ -52,27 +52,55 @@ fun NavGraph(
         }
 
         composable(Route.Map.screen_route) {
-            MapViewScreen(navController)
+            if (isLoggedIn == true) {
+                MapViewScreen(navController)
+            } else if (isLoggedIn == false) {
+                SignInScreen(navController)
+            }
+
         }
 
         composable(Route.Camera.screen_route) {
 
-            CameraScreen(navBackStackEntry = it, navController = navController)
+            if (isLoggedIn == true) {
+                CameraScreen(navBackStackEntry = it, navController = navController)
+            } else if (isLoggedIn == false) {
+                SignInScreen(navController)
+            }
+
         }
 
         composable(Route.Gallery.screen_route) {
-            GalleryScreen(navBackStackEntry = it, navController)
+
+            if (isLoggedIn == true) {
+                GalleryScreen(navBackStackEntry = it, navController)
+            } else if (isLoggedIn == false) {
+                SignInScreen(navController)
+            }
+
         }
 
         composable(Route.Detail.screen_route, arguments = listOf(navArgument("idPicture") { type = NavType.StringType })) {
-            DetailScreen(navBackStackEntry = it)
+
+            if (isLoggedIn == true) {
+                DetailScreen(navBackStackEntry = it)
+            } else if (isLoggedIn == false) {
+                SignInScreen(navController)
+            }
         }
 
         composable(Route.Profile.screen_route) {
-            ProfileScreen(onDisconnect = {
-                viewModel.logout()
-                navController.navigate(Route.SignIn.screen_route)
-            })
+
+            if (isLoggedIn == true) {
+                ProfileScreen(onDisconnect = {
+                    if (isLoggedIn == true){
+                        viewModel.logout()
+
+                    }
+                })
+            } else if (isLoggedIn == false) {
+                SignInScreen(navController)
+            }
         }
 
     }

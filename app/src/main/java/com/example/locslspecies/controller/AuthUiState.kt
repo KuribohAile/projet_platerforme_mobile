@@ -1,4 +1,4 @@
-package com.example.locslspecies.viewmodel
+package com.example.locslspecies.controller
 
 sealed class AuthUiState {
     object Success : AuthUiState()

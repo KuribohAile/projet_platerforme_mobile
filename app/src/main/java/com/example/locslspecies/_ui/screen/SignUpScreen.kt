@@ -24,26 +24,31 @@ import androidx.navigation.NavHostController
 import com.example.locslspecies.model._User
 import com.example.locslspecies._ui.navigation.Route
 import com.example.locslspecies.helper.ErrorHandling
-import com.example.locslspecies.viewmodel.AuthUiState
-import com.example.locslspecies.viewmodel.AuthViewModel
+import com.example.locslspecies.controller.AuthUiState
+import com.example.locslspecies.controller.AuthViewModel
 
-// fonction qui permet de créer la page de d'inscription de l'utilisateur
+// Fonction qui permet de créer la page d'inscription de l'utilisateur.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(navController: NavHostController) {
+    // Contexte local nécessaire pour certaines opérations.
     val context = LocalContext.current
+    // Initialisation du ViewModel.
     val viewModel: AuthViewModel = viewModel()
+    // Observation de l'état de l'interface utilisateur pour les erreurs et les messages.
     val uiState by viewModel.uiState.collectAsState()
+    // État de l'utilisateur en cours de création.
     var user by remember { mutableStateOf(_User()) }
 
-    // on verifie l'etat de l'inscription et on affiche un message en fonction
+    // Vérification de l'état de l'inscription et navigation en cas de succès.
     when (uiState) {
         AuthUiState.Success -> {
-            navController.navigate(Route.SignIn.screen_route) }
+            navController.navigate(Route.SignIn.screen_route)
+        }
         else -> {}
     }
 
-    // on definit les champs de texte pour l'inscription
+    // Disposition en colonne pour le formulaire d'inscription.
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,77 +56,73 @@ fun SignUpScreen(navController: NavHostController) {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // Titre de l'application.
         Text("Local Species", color = Color.White, style = MaterialTheme.typography.headlineLarge)
+        // Espaceur.
         Spacer(modifier = Modifier.height(48.dp))
+        // Sous-titre "Inscription".
         Text("Inscription", color = Color.White, style = MaterialTheme.typography.headlineMedium)
+        // Espaceur.
         Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(16.dp))
-
+        // Champs de texte personnalisés pour les informations de l'utilisateur.
         CustomOutlinedTextField(
             value = user.name,
             onValueChange = { newText -> user = user.copy(name = newText) },
             label = "Votre nom"
         )
+        // Espaceur.
         Spacer(modifier = Modifier.height(16.dp))
         CustomOutlinedTextField(
             value = user.email,
             onValueChange = { newText -> user = user.copy(email = newText) },
             label = "Votre email"
         )
-
+        // Espaceur.
         Spacer(modifier = Modifier.height(16.dp))
-
         CustomOutlinedTextField(
             value = user.password,
             onValueChange = { newText -> user = user.copy(password = newText) },
-            label = "Votre mot de passe",
-
+            label = "Votre mot de passe"
         )
+        // Espaceur.
         Spacer(modifier = Modifier.height(16.dp))
-
         CustomOutlinedTextField(
             value = user.repeatPassword,
             onValueChange = { newText -> user = user.copy(repeatPassword = newText) },
             label = "Repetez votre mot de passe"
         )
+        // Espaceur.
         Spacer(modifier = Modifier.height(30.dp))
 
+        // Bouton pour soumettre le formulaire d'inscription.
         Button(onClick = {
+            // Vérification de la correspondance des mots de passe.
             if (user.password != user.repeatPassword){
                 Toast.makeText(
-                    navController.context,
+                    context,
                     "Les mots de passe ne correspondent pas",
                     Toast.LENGTH_LONG
                 ).show()
-
-            }else {
+            } else {
+                // Envoi des données d'inscription au ViewModel.
                 viewModel.register(user)
             }
-
-            },
+        },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF3B808B),
                 contentColor = Color.White)
         ) {
             Text("S'inscrire", color = Color.White)
         }
+        // Espaceur.
         Spacer(modifier = Modifier.height(15.dp))
+        // Gestion des erreurs de l'interface utilisateur.
         ErrorHandling(uiState)
-/*        Spacer(modifier = Modifier.height(40.dp))
-        Text("Se connecter via", color = Color.White)
-        Spacer(modifier = Modifier.height(8.dp))
-        IconButton(onClick = { *//* Handle Google Sign-In here *//* }) {
-            Icon(
-                painter = painterResource(id = R.drawable.google_sign_in),
-                contentDescription = "Google Sign-In"
-            )
-        }*/
-
     }
 }
 
-// customisation du champ de texte pour l'inscription
+// Customisation du champ de texte pour l'inscription.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomOutlinedTextField(
@@ -129,12 +130,15 @@ fun CustomOutlinedTextField(
     onValueChange: (String) -> Unit,
     label: String
 ) {
+    // Champ de texte avec bordure personnalisée.
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(label, color = Color(0xFF03C5E4)) },
         shape = RoundedCornerShape(16.dp),
+        // Transformation visuelle pour masquer le mot de passe.
         visualTransformation = if (label == "Votre mot de passe" || label == "Repetez votre mot de passe") PasswordVisualTransformation() else VisualTransformation.None,
+        // Personnalisation des couleurs du champ de texte.
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = Color.White,
             unfocusedTextColor = Color.White,
