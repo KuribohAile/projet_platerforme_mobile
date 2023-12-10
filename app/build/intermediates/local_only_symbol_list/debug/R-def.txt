@@ -19,6 +19,7 @@ drawable plante
 drawable profile_24
 drawable settings_24
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
 string gcm_defaultSenderId

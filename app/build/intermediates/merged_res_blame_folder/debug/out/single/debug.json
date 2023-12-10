@@ -4,44 +4,68 @@
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/xml/path_provider.xml"
     },
     {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_profile_24.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/profile_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxhdpi/ic_launcher_foreground.webp"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/xml_data_extraction_rules.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_plante.png.flat",
-        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/plante.png"
-    },
-    {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/xml_backup_rules.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/xml/backup_rules.xml"
     },
     {
-        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_plante.png.flat",
+        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/plante.png"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_home_24.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/home_24.xml"
     },
     {
-        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_baseline_send_24.xml.flat",
-        "source": "com.example.locslspecies.app-main-69:/drawable/baseline_send_24.xml"
+        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xhdpi/ic_launcher_foreground.webp"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_gallery_24.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/gallery_24.xml"
+    },
+    {
+        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher.webp"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/mipmap-mdpi_ic_launcher.webp.flat",
@@ -52,8 +76,36 @@
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
@@ -68,8 +120,16 @@
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_ic_launcher_background.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_settings_24.xml.flat",
@@ -84,8 +144,20 @@
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/camera_24.xml"
     },
     {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_map_24.xml.flat",
         "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/map_24.xml"
+    },
+    {
+        "merged": "com.example.locslspecies.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.locslspecies.app-main-69:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_baseline_send_24.xml.flat",
+        "source": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-main-69:/drawable/baseline_send_24.xml"
     },
     {
         "merged": "/Users/mohametaminendiaye/.gradle/daemon/8.0/com.example.locslspecies.app-merged_res-67:/drawable_google_sign_in.xml.flat",

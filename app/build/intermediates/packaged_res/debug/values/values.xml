@@ -7,7 +7,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
-    <string name="app_name">LocslSpecies</string>
+    <string name="app_name">Local Species</string>
     <string name="gcm_defaultSenderId" translatable="false">793699722713</string>
     <string name="google_api_key" translatable="false">AIzaSyB9-6Zriay-ZSbaIm_fevaOp1rcBq4wqpQ</string>
     <string name="google_app_id" translatable="false">1:793699722713:android:22248501c3115577f165c8</string>
