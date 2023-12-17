@@ -49,7 +49,7 @@ fun MapViewScreen(navController: NavHostController) {
                         snippet = "Posté par : ",
                         // Lors du clic sur le marqueur, navigation vers l'écran de détail de la plante.
                         onClick = {
-                            navController.navigate("detail/$index")
+                            navController.navigate("detail/${picture.id}")
                             true // Indique que l'événement de clic a été géré.
                         }
                     )
