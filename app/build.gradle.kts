@@ -89,6 +89,8 @@ dependencies {
 
     // OkHttp for logging network requests
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    // add the dependency for the Google AI client SDK for Android
+    implementation("com.google.ai.client.generativeai:generativeai:0.1.1")
 
 
 }
